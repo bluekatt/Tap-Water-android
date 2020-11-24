@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Tap Water</string>
+    <string name="title_summary">Summary</string>
+    <string name="title_record">Record</string>
+    <string name="title_settings">Settings</string>
+    <string name="drink_button">Drink</string>
+
+    <!-- Formatting -->
+    <string name="percentage">%s%%</string>
+    <string name="drank_today">current: %sL</string>
+    <string name="daily_goal">goal: %sL</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

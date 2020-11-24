@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_summary"
+        android:icon="@drawable/planner_selector"
+        android:title="@string/title_summary" />
+
+    <item
+        android:id="@+id/navigation_record"
+        android:icon="@drawable/water_selector"
+        android:title="@string/title_record" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/gear_selector"
+        android:title="@string/title_settings" />
+
+</menu>
