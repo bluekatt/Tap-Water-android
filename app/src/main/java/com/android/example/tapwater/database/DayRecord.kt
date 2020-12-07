@@ -6,15 +6,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "day_record")
 data class DayRecord (
-    @PrimaryKey(autoGenerate = true)
-    var recordId: Long = 0L,
-
     @ColumnInfo(name = "drank_today")
-    var drankToday: Double = 0.0,
+    var drankToday: Float = 0f,
 
     @ColumnInfo(name = "daily_goal")
-    var dailyGoal: Double = 0.0,
+    var dailyGoal: Float = 0f,
 
+    @PrimaryKey
     @ColumnInfo(name = "date")
     var date: String = "",
 )

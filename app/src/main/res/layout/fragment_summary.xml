@@ -8,13 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.summary.SummaryFragment">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tool_bar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/title_summary"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/text_home"
             android:layout_width="match_parent"

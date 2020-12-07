@@ -4,16 +4,18 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.Observer
+import androidx.preference.PreferenceManager
 import com.android.example.tapwater.R
 import com.android.example.tapwater.database.DayRecord
 import com.android.example.tapwater.database.DayRecordDao
-import com.android.example.tapwater.floorDouble
+import com.android.example.tapwater.floorDecimal
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
 const val SPEED  = 92.1
+private const val DEFAULT_GOAL = 2f
 
 class RecordViewModel @Inject constructor(
     val dayRecordDao: DayRecordDao,
@@ -21,14 +23,14 @@ class RecordViewModel @Inject constructor(
 ): ViewModel() {
     private lateinit var todayRecord: DayRecord
 
-    val drankPercentage = MediatorLiveData<Double>()
+    val drankPercentage = MediatorLiveData<Float>()
 
-    private val _drankToday = MutableLiveData<Double>()
-    val drankToday: LiveData<Double>
+    private val _drankToday = MutableLiveData<Float>()
+    val drankToday: LiveData<Float>
         get() = _drankToday
 
-    private val _dailyGoal = MutableLiveData<Double>()
-    val dailyGoal: LiveData<Double>
+    private val _dailyGoal = MutableLiveData<Float>()
+    val dailyGoal: LiveData<Float>
         get() = _dailyGoal
 
     private var timer = Timer()
@@ -38,60 +40,69 @@ class RecordViewModel @Inject constructor(
         get() = _isDrinking
 
     val drankPercentageString = Transformations.map(drankPercentage) {
-        context.resources.getString(R.string.percentage, floorDouble(it))
+        context.resources.getString(R.string.percentage, floorDecimal(it))
     }
 
     val drankTodayString = Transformations.map(drankToday) {
-        context.resources.getString(R.string.drank_today, floorDouble(it))
+        context.resources.getString(R.string.drank_today, floorDecimal(it))
     }
 
     val dailyGoalString = Transformations.map(dailyGoal) {
-        context.resources.getString(R.string.daily_goal, floorDouble(it))
+        context.resources.getString(R.string.daily_goal, floorDecimal(it))
     }
 
     init {
-        initializeDayRecord()
         _isDrinking.value = false
+        _dailyGoal.value = PreferenceManager.getDefaultSharedPreferences(context).getFloat("daily_goal", DEFAULT_GOAL)
+
+        initializeDayRecord()
+
         timer.scheduleAtFixedRate(object: TimerTask() {
             override fun run() {
                 if(isDrinking.value==true) {
-                    _drankToday.postValue(_drankToday.value?.plus(0.1 * SPEED / 1000))
+                    _drankToday.postValue(_drankToday.value?.plus((0.1 * SPEED / 1000).toFloat()))
                 }
             }
         }, 0L, 100L)
 
         drankPercentage.addSource(drankToday, Observer {
             if(dailyGoal.value==null) {
-                drankPercentage.value = 0.0
+                drankPercentage.value = 0f
             } else {
                 drankPercentage.value = it / dailyGoal.value!! * 100
             }
         })
         drankPercentage.addSource(dailyGoal, Observer {
             if(drankToday.value==null) {
-                drankPercentage.value = 0.0
+                drankPercentage.value = 0f
             } else {
                 drankPercentage.value = drankToday.value!! / it * 100
             }
         })
     }
 
-    private fun initializeDayRecord() {
+    fun initializeDayRecord() {
         viewModelScope.launch {
             todayRecord = getTodayRecordFromDB()
             _drankToday.value = todayRecord.drankToday
-            _dailyGoal.value = todayRecord.dailyGoal
+            if(todayRecord.dailyGoal!=dailyGoal.value && dailyGoal.value!=null) {
+                todayRecord.dailyGoal = dailyGoal.value!!
+                updateRecordToDB(todayRecord)
+            }
         }
     }
 
     private suspend fun getTodayRecordFromDB(): DayRecord {
-        val df = SimpleDateFormat("yyyyMMdd", Locale.KOREA)
+        val df = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
 
-        var record = dayRecordDao.getTodayRecord()
-        while(record==null || record.date!=df.format(Date())) {
-            record = DayRecord(dailyGoal = 2.0, date = df.format(Date()))
+        val today = df.format(Date())
+
+        var record = dayRecordDao.get(today)
+
+        while(record==null) {
+            record = DayRecord(dailyGoal = dailyGoal.value ?: DEFAULT_GOAL, date = df.format(Date()))
             dayRecordDao.insert(record)
-            record = dayRecordDao.getTodayRecord()
+            record = dayRecordDao.get(today)
         }
         return record
     }

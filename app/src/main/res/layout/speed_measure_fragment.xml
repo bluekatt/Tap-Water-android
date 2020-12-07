@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.android.example.tapwater.ui.settings.SpeedMeasureViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.settings.SpeedMeasureFragment">
+
+        <ImageView
+            android:id="@+id/cup_button1"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="@string/cup_button1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/cup_button2"
+            app:layout_constraintEnd_toStartOf="@+id/cup_button2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cup_button2"
+            app:srcCompat="@drawable/cup_unfilled_64" />
+
+        <ImageView
+            android:id="@+id/cup_button3"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="@string/cup_button3"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/cup_button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cup_button2"
+            app:layout_constraintTop_toTopOf="@+id/cup_button2"
+            app:srcCompat="@drawable/cup_unfilled_64" />
+
+        <ImageView
+            android:id="@+id/info_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/info_button"
+            android:src="@drawable/ic_info_24"
+            app:layout_constraintBottom_toBottomOf="@+id/volume_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/volume_input"
+            app:layout_constraintTop_toTopOf="@+id/volume_input"
+            app:tint="@android:color/darker_gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/measure_complete_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/measure_complete"
+            app:icon="@drawable/ic_done_24"
+            app:layout_constraintBottom_toTopOf="@+id/measure_again_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/measure_again_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="@string/measure_again"
+            app:icon="@drawable/ic_refresh_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/guide_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/tip_string"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/measure_again_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/cup_button2"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="@string/cup_button2"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cup_button3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cup_button1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cup_unfilled_64" />
+
+        <EditText
+            android:id="@+id/volume_input"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="5dp"
+            android:ems="10"
+            android:hint="@string/input_hint"
+            android:inputType="numberDecimal"
+            android:autofillHints="@string/input_hint"
+            app:layout_constraintEnd_toStartOf="@+id/info_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/speed_indicator_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/measure_complete_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -3,6 +3,7 @@ package com.android.example.tapwater.di
 import android.content.Context
 import com.android.example.tapwater.database.DatabaseModule
 import com.android.example.tapwater.ui.record.RecordFragment
+import com.android.example.tapwater.ui.settings.SpeedMeasureFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -16,4 +17,5 @@ interface AppComponent {
     }
 
     fun inject(fragment: RecordFragment)
+    fun inject(fragment: SpeedMeasureFragment)
 }

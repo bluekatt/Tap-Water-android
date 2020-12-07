@@ -15,12 +15,9 @@ interface DayRecordDao {
     @Update
     suspend fun update(record: DayRecord)
 
-    @Query("SELECT * from day_record WHERE recordId = :key")
-    fun get(key: Long): LiveData<DayRecord>
+    @Query("SELECT * from day_record WHERE date = :date")
+    suspend fun get(date: String): DayRecord?
 
-    @Query("SELECT * from day_record ORDER BY recordId DESC LIMIT 1")
-    suspend fun getTodayRecord(): DayRecord?
-
-    @Query("SELECT * from day_record ORDER BY recordId DESC")
+    @Query("SELECT * from day_record ORDER BY date DESC")
     fun getAllRecords(): LiveData<List<DayRecord>>
 }

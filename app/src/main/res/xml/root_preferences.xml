@@ -1,0 +1,69 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settings_container">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/category_general">
+        <Preference
+            app:fragment="com.android.example.tapwater.ui.settings.AppInfoFragment"
+            app:key="app_info"
+            app:iconSpaceReserved="false"
+            app:title="@string/info_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/category_notification" >
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="reminder"
+            app:title="@string/reminder_title" />
+
+        <com.android.example.tapwater.ui.settings.NumberPickerPreference
+            app:iconSpaceReserved="false"
+            app:defaultNumber="1"
+            app:minValue="1"
+            app:maxValue="24"
+            app:stepSize="1"
+            app:formatString="@plurals/hour_format"
+            app:key="notification_interval"
+            app:useSimpleSummaryProvider="true"
+            app:title="@string/interval_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/category_record" >
+
+        <com.android.example.tapwater.ui.settings.NumberPickerPreference
+            app:iconSpaceReserved="false"
+            app:defaultNumber="2"
+            app:minValue="0"
+            app:maxValue="5"
+            app:stepSize="0.1"
+            app:formatString="@string/liter_format"
+            app:key="daily_goal"
+            app:title="@string/daily_goal_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <com.android.example.tapwater.ui.settings.SpeedPreference
+            app:defaultSpeed="92"
+            app:iconSpaceReserved="false"
+            app:key="speed"
+            app:title="@string/speed_title"
+            app:fragment="com.android.example.tapwater.ui.settings.SpeedMeasureFragment"
+            app:useSimpleSummaryProvider="true" />
+
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="remove_record"
+            app:title="@string/remove_record_title" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
+
