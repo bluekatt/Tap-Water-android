@@ -6,8 +6,9 @@ import android.graphics.Paint
 import android.text.style.LineBackgroundSpan
 
 class RecordSpan(percentage: Float, val selected: Boolean = false): LineBackgroundSpan {
-    val reversePer = 1f - percentage
+    private val reversePer = if(1f - percentage>0) 1f-percentage else 0f
     private val color = Color.argb(255, (125 + 130 * reversePer).toInt(), (175 + 80 * reversePer).toInt(), (235 + 20 * reversePer).toInt())
+    private val cornerColor = Color.argb(255, 125, 175, 235)
 
     override fun drawBackground(
         canvas: Canvas, paint: Paint,
@@ -15,9 +16,22 @@ class RecordSpan(percentage: Float, val selected: Boolean = false): LineBackgrou
         text: CharSequence, start: Int, end: Int, lineNumber: Int,
     ) {
         val oldColor = paint.color
+        val oldStyle = paint.style
+        val oldStrokeWidth = paint.strokeWidth
+
         paint.color = color
-        canvas.drawCircle((left+right)/2f, (top+bottom)/2f, if(selected) 40f*1.6f else 40f, paint)
+        canvas.drawCircle((left+right)/2f, (top+bottom)/2f, if(selected) 40f*1.5f else 40f, paint)
+
+        paint.color = cornerColor
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = 4f
+        if(selected) {
+            canvas.drawCircle((left+right)/2f, (top+bottom)/2f, 40f*1.5f, paint)
+        }
+
         paint.color = oldColor
+        paint.style = oldStyle
+        paint.strokeWidth = oldStrokeWidth
     }
 
 }

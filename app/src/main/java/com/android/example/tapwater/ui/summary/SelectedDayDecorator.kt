@@ -8,6 +8,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 
 class SelectedDayDecorator(var date: CalendarDay?, var percentage: Float): DayViewDecorator {
+
     override fun shouldDecorate(day: CalendarDay?): Boolean {
         return date == day
     }

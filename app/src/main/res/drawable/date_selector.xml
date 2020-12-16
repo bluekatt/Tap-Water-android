@@ -2,15 +2,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
     android:exitFadeDuration="@android:integer/config_shortAnimTime">
 
-    <item
-        android:state_checked="true"
-        android:drawable="@drawable/inset_date_circle_64"
-        />
-
-    <item
-        android:state_pressed="true"
-        android:drawable="@drawable/inset_date_circle_pressed_64"
-        />
-
     <item android:drawable="@android:color/transparent" />
 </selector>

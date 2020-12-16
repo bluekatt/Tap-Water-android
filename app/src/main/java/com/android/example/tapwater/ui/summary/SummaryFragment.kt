@@ -40,8 +40,8 @@ class SummaryFragment : Fragment() {
         val selectedDayDecorator = SelectedDayDecorator(viewModel.today, 0f)
 
         binding.calendarView.addDecorators(
-            SelectionDecorator(requireActivity()),
-            selectedDayDecorator
+            selectedDayDecorator,
+            SelectionDecorator(requireActivity())
         )
 
         binding.calendarView.selectedDate = viewModel.today

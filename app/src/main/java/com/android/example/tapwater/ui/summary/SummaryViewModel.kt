@@ -2,7 +2,6 @@ package com.android.example.tapwater.ui.summary
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import androidx.lifecycle.*
 import com.android.example.tapwater.R
 import com.android.example.tapwater.componentsToDateString

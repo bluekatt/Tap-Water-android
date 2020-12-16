@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<inset xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/date_circle_pressed_64"
-    android:inset="3dp"/>
-
