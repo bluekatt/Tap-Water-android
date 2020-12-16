@@ -21,4 +21,8 @@ class SpeedPreference(context: Context, attrs: AttributeSet): Preference(context
         super.persistFloat(value)
         notifyChanged()
     }
+
+    override fun getSummary(): CharSequence {
+        return context.getString(R.string.speed_format, getPersistedFloat())
+    }
 }

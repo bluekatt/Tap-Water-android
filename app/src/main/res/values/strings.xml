@@ -32,24 +32,40 @@
 
     <!-- Record Preferences -->
     <string name="daily_goal_title">Daily Goal</string>
-    <string name="speed_title">Reset Speed</string>
+    <string name="speed_title">Drinking Speed</string>
     <string name="liter_format">%.1fL</string>
 
     <!-- Speed Measure Fragment -->
     <string name="input_hint">Volume to Drink(ml)</string>
-    <string name="tip_string">Enter the volume to drink then as you touch empty cup,\ndrink water to measure drinking speed</string>
+    <string name="tip_text">Enter the volume to drink then as you touch empty cup,\ndrink water to measure drinking speed</string>
+    <string name="drink_complete">Done</string>
     <string name="measure_again">Measure Again</string>
     <string name="measure_complete">Measure Complete</string>
     <string name="cup_button1">Cup Button1</string>
     <string name="cup_button2">Cup Button2</string>
     <string name="cup_button3">Cup Button3</string>
     <string name="info_button">Info Button</string>
+    <string name="speed_format">%.0fml/sec</string>
+    <string name="measure_background_text">Drink Water</string>
 
     <!-- App Info Fragment -->
     <string name="update_available">Update is available</string>
     <string name="app_icon">App Icon</string>
-    <string name="up_to_date">Using the latest version</string>
+    <string name="up_to_date">App is up to date</string>
     <string name="current_version">Current Version: %s</string>
     <string name="latest_version">Latest Version: %s</string>
+
+    <!-- Notification -->
+    <string name="notification_title_text">Drink Water</string>
+    <string name="notification_content_text">You haven\'t drunk the amount you aimed today!</string>
+    <string name="notification_channel_description">Drink Water Reminder</string>
+
+    <!-- Summary Fragment -->
+    <string name="no_record">No Record</string>
+    <string name="select_other">Please select the other date</string>
+    <string name="selected_drank_format">Drank: %.2fL</string>
+    <string name="selected_goal_format">Goal: %.2fL</string>
+    <string name="year_format">%d</string>
+    <string name="selected_date_format">%s %s\n%s</string>
 
 </resources>

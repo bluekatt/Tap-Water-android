@@ -10,8 +10,15 @@
 
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        
+        <item name="preferenceTheme">@style/TapWater.Preference</item>
 
     </style>
+    
+    <style name="TapWater.Preference" parent="@style/PreferenceThemeOverlay">
+        <item name="android:layout">@layout/fragment_settings</item>
+    </style>
+    
 
     <style name="TapWater.Button.Icon.Rounded" parent="Widget.MaterialComponents.Button.Icon">
         <item name="iconSize">30dp</item>

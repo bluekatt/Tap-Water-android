@@ -16,25 +16,10 @@
         android:name="com.android.example.tapwater.ui.record.RecordFragment"
         android:label="@string/title_record"
         tools:layout="@layout/fragment_record" />
-
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.android.example.tapwater.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" >
-        <action
-            android:id="@+id/action_navigation_settings_to_navigation_app_info"
-            app:destination="@id/navigation_app_info"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/navigation_settings" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_app_info"
-        android:name="com.android.example.tapwater.ui.settings.AppInfoFragment"
-        android:label="@string/info_title"
-        tools:layout="@layout/fragment_app_info" />
+        android:id="@+id/navigation_settings_host"
+        android:name="com.android.example.tapwater.ui.settings.SettingsNavHostFragment"
+        android:label="fragment_settings_nav_host"
+        tools:layout="@layout/fragment_settings_nav_host" />
 
 </navigation>

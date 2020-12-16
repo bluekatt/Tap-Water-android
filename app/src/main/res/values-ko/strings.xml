@@ -31,17 +31,20 @@
 
     <!-- Record Preferences -->
     <string name="daily_goal_title">하루 목표 설정</string>
-    <string name="speed_title">속도 재설정</string>
+    <string name="speed_title">속도 설정</string>
 
     <!-- Speed Measure Fragment -->
     <string name="input_hint">마실 양(ml)</string>
-    <string name="tip_string">마실 양을 입력 후 빈 컵을 누르는 동시에\n물을 마시며 속도를 측정해주세요</string>
+    <string name="tip_text">마실 양을 입력 후 빈 컵을 누르는 동시에\n물을 마시며 속도를 측정해주세요</string>
+    <string name="drink_complete">완료</string>
     <string name="measure_again">다시 측정</string>
     <string name="measure_complete">측정 완료</string>
     <string name="cup_button1">컵 버튼1</string>
     <string name="cup_button2">컵 버튼2</string>
     <string name="cup_button3">컵 버튼3</string>
     <string name="info_button">더보기 버튼</string>
+    <string name="speed_format">초당 %.0fml</string>
+    <string name="measure_background_text">물을 마시세요</string>
 
     <!-- App Info Fragment -->
     <string name="update_available">업데이트가 가능합니다</string>
@@ -49,5 +52,18 @@
     <string name="up_to_date">최신 버전 사용중입니다</string>
     <string name="current_version">현재 버전: %s</string>
     <string name="latest_version">최신 버전: %s</string>
+
+    <!-- Notification -->
+    <string name="notification_title_text">물 마시기</string>
+    <string name="notification_content_text">오늘 목표량을 아직 다 못 마셨어요!</string>
+    <string name="notification_channel_description">물 마시기 리마인더</string>
+
+    <!-- Summary Fragment -->
+    <string name="no_record">기록이 없습니다</string>
+    <string name="select_other">다른 날짜를 선택해주세요</string>
+    <string name="selected_drank_format">마신 양: %.2fL</string>
+    <string name="selected_goal_format">목표: %.2fL</string>
+    <string name="year_format">%d년</string>
+    <string name="selected_date_format">%s년\n%s월 %s일</string>
 
 </resources>

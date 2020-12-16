@@ -12,7 +12,7 @@
         android:title="@string/title_record" />
 
     <item
-        android:id="@+id/navigation_settings"
+        android:id="@+id/navigation_settings_host"
         android:icon="@drawable/gear_selector"
         android:title="@string/title_settings" />
 

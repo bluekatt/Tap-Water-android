@@ -28,7 +28,7 @@
             app:maxValue="24"
             app:stepSize="1"
             app:formatString="@plurals/hour_format"
-            app:key="notification_interval"
+            app:key="reminder_interval"
             app:useSimpleSummaryProvider="true"
             app:title="@string/interval_title" />
 
@@ -66,4 +66,3 @@
 
 
 </PreferenceScreen>
-
