@@ -41,9 +41,13 @@ class SummaryViewModel @Inject constructor(
     }
 
     val firstDate = Transformations.map(records) {
-        val firstDateString = it.last().date
-        val components = dateStringToComponents(firstDateString)
-        CalendarDay.from(components[0], components[1], 1)
+        if(it.isEmpty()) {
+            CalendarDay.from(today.year, today.month, 1)
+        } else {
+            val firstDateString = it.last().date
+            val components = dateStringToComponents(firstDateString)
+            CalendarDay.from(components[0], components[1], 1)
+        }
     }
 
     val recordExists = Transformations.map(selectedRecord) {

@@ -6,14 +6,19 @@
     <string name="title_settings">설정</string>
     <string name="title_notification_settings">알림 설정</string>
     <string name="title_record_settings">기록 설정</string>
+    <string name="title_activity_start">시작</string>
     <string name="drink_button">마시기</string>
+
+    <!-- Start Goal Set Fragment -->
+    <string name="goal_set_help_text">하루 목표량을 설정해주세요.</string>
+    <string name="goal_set_complete">목표 설정 완료</string>
 
     <!-- Record Fragment -->
     <string name="percentage">%s%%</string>
     <string name="drank_today">현재: %sL</string>
     <string name="daily_goal">목표: %sL</string>
 
-    <!-- Preference Titles -->
+    <!-- Settings Fragment -->
     <string name="category_general">일반</string>
     <string name="category_notification">알림</string>
     <string name="category_record">기록</string>
@@ -21,6 +26,11 @@
     <string name="notification_title">알림 설정</string>
     <string name="record_title">기록 설정</string>
     <string name="remove_record_title">기록 삭제</string>
+    <string name="dialog_remove_record_title">기록 삭제</string>
+    <string name="dialog_remove_record_content">현재까지의 모든 물 기록량을 삭제합니다.</string>
+    <string name="dialog_cancel_button">취소</string>
+    <string name="dialog_remove_button">삭제</string>
+    <string name="remove_toast">모든 기록이 삭제되었습니다.</string>
 
     <!-- Notification Preference -->
     <string name="reminder_title">리마인더</string>

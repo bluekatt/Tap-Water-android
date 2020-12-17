@@ -12,6 +12,9 @@ interface DayRecordDao {
     @Delete
     suspend fun delete(record: DayRecord)
 
+    @Query("DELETE from day_record")
+    suspend fun deleteAll()
+
     @Update
     suspend fun update(record: DayRecord)
 

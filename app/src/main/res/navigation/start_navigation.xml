@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_navigation"
+    app:startDestination="@id/startGoalSetFragment">
+
+    <fragment
+        android:id="@+id/startGoalSetFragment"
+        android:name="com.android.example.tapwater.StartGoalSetFragment"
+        android:label="start_goal_set_fragment"
+        tools:layout="@layout/fragment_start_goal_set" >
+        <action
+            android:id="@+id/action_startGoalSetFragment_to_speedMeasureFragment"
+            app:destination="@id/speedMeasureFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/speedMeasureFragment"
+        android:name="com.android.example.tapwater.ui.settings.SpeedMeasureFragment"
+        android:label="SpeedMeasureFragment" />
+</navigation>

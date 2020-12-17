@@ -18,7 +18,10 @@
     <style name="TapWater.Preference" parent="@style/PreferenceThemeOverlay">
         <item name="android:layout">@layout/fragment_settings</item>
     </style>
-    
+
+    <style name="StartNumberPickerTheme" parent="AppTheme">
+        <item name="colorControlNormal">@color/transparent</item>
+    </style>
 
     <style name="TapWater.Button.Icon.Rounded" parent="Widget.MaterialComponents.Button.Icon">
         <item name="iconSize">30dp</item>

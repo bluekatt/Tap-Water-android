@@ -22,5 +22,12 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/navigation_settings" />
+        <action
+            android:id="@+id/action_navigation_settings_to_navigation_speed_measure"
+            app:destination="@id/navigation_speed_measure" />
     </fragment>
+    <dialog
+        android:id="@+id/navigation_speed_measure"
+        android:name="com.android.example.tapwater.ui.settings.SpeedMeasureFragment"
+        android:label="SpeedMeasureFragment" />
 </navigation>

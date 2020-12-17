@@ -35,8 +35,6 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
-    private var notificationFirstCall = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -49,6 +47,12 @@ class MainActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceS
         navView.itemIconTintList = null
         navView.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED
 
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        if(pref.getBoolean("first_launch", true)) {
+            val intent = Intent(this, StartActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

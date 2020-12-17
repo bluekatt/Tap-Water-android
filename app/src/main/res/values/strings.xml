@@ -6,21 +6,31 @@
     <string name="title_settings">Settings</string>
     <string name="title_notification_settings">Notification Settings</string>
     <string name="title_record_settings">Record Settings</string>
+    <string name="title_activity_start">StartActivity</string>
     <string name="drink_button">Drink</string>
+
+    <!-- Start Goal Set Fragment -->
+    <string name="goal_set_help_text">Please set the amount you try to drink a day.</string>
+    <string name="goal_set_complete">Goal Set Completed</string>
 
     <!-- Record Fragment -->
     <string name="percentage">%s%%</string>
     <string name="drank_today">current: %sL</string>
     <string name="daily_goal">goal: %sL</string>
 
-    <!-- Preference Titles -->
+    <!-- Settings Fragment -->
     <string name="category_general">General</string>
     <string name="category_notification">Notification</string>
     <string name="category_record">Record</string>
     <string name="info_title">App Info</string>
     <string name="notification_title">Notification</string>
     <string name="record_title">Record</string>
-    <string name="remove_record_title">Remove All Records</string>
+    <string name="remove_record_title">Remove Records</string>
+    <string name="dialog_remove_record_title">Remove Records</string>
+    <string name="dialog_remove_record_content">This will remove all the records up until now.</string>
+    <string name="dialog_cancel_button">Cancel</string>
+    <string name="dialog_remove_button">Remove</string>
+    <string name="remove_toast">All Records are removed</string>
 
     <!-- Notification Preferences -->
     <string name="reminder_title">Reminder</string>
@@ -67,5 +77,6 @@
     <string name="selected_goal_format">Goal: %.2fL</string>
     <string name="year_format">%d</string>
     <string name="selected_date_format">%s %s\n%s</string>
+
 
 </resources>

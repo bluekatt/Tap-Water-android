@@ -11,18 +11,15 @@ class SpeedPreference(context: Context, attrs: AttributeSet): Preference(context
     init {
         context.withStyledAttributes(attrs, R.styleable.SpeedPreference) {
             defaultSpeed = getFloat(R.styleable.SpeedPreference_defaultSpeed, 0f)
-            doPersistFloat(defaultSpeed)
+            super.persistFloat(defaultSpeed)
         }
     }
 
-    fun getPersistedFloat() = getPersistedFloat(defaultSpeed)
-
-    fun doPersistFloat(value: Float) {
-        super.persistFloat(value)
+    fun updateSummary() {
         notifyChanged()
     }
 
     override fun getSummary(): CharSequence {
-        return context.getString(R.string.speed_format, getPersistedFloat())
+        return context.getString(R.string.speed_format, getPersistedFloat(defaultSpeed))
     }
 }
