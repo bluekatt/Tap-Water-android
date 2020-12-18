@@ -8,6 +8,8 @@ import android.content.SharedPreferences
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
@@ -65,7 +67,13 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         val touchListener = {v: View, event: MotionEvent ->
             if(v.isClickable) {
                 when (event.action) {
-                    MotionEvent.ACTION_DOWN -> (v as ImageView).colorFilter = BlendModeColorFilter(Color.rgb(209, 209, 209), BlendMode.SRC_IN)
+                    MotionEvent.ACTION_DOWN -> {
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            (v as ImageView).colorFilter = BlendModeColorFilter(Color.rgb(209, 209, 209), BlendMode.SRC_IN)
+                        } else {
+                            (v as ImageView).setColorFilter(Color.rgb(209, 209, 209), PorterDuff.Mode.SRC_IN)
+                        }
+                    }
                     MotionEvent.ACTION_UP -> {
                         (v as ImageView).clearColorFilter()
                         v.performClick()
@@ -85,7 +93,7 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
 
     override fun onStart() {
         super.onStart()
-        binding.root.layoutParams.height = (requireActivity().windowManager.currentWindowMetrics.bounds.height() * 0.9).toInt()
+        binding.root.layoutParams.height = (requireActivity().resources.displayMetrics.heightPixels)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -31,6 +31,11 @@ class SummaryFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        binding.calendarView.state().edit()
+            .setMinimumDate(CalendarDay.from(viewModel.today.year, viewModel.today.month, 1))
+            .setMaximumDate(viewModel.lastDate)
+            .commit()
+
         binding.calendarView.topbarVisible = false
 
         binding.calendarView.setOnMonthChangedListener { _, date ->
@@ -50,11 +55,6 @@ class SummaryFragment : Fragment() {
             selectedDayDecorator.date = date
             viewModel.setSelectedRecord(date)
         }
-
-        binding.calendarView.state().edit()
-            .setMinimumDate(CalendarDay.from(viewModel.today.year, viewModel.today.month, 1))
-            .setMaximumDate(viewModel.lastDate)
-            .commit()
 
         viewModel.firstDate.observe(viewLifecycleOwner, {
             binding.calendarView.state().edit()
