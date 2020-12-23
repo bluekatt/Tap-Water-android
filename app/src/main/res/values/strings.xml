@@ -7,7 +7,10 @@
     <string name="title_notification_settings">Notification Settings</string>
     <string name="title_record_settings">Record Settings</string>
     <string name="title_activity_start">StartActivity</string>
+    <string name="title_month_summary">Month Summary</string>
     <string name="drink_button">Drink</string>
+    <string name="liter_format">%.2fL</string>
+    <string name="percentage_format">%.3f%%</string>
 
     <!-- Start Goal Set Fragment -->
     <string name="goal_set_help_text">Please set the amount you try to drink a day.</string>
@@ -43,7 +46,6 @@
     <!-- Record Preferences -->
     <string name="daily_goal_title">Daily Goal</string>
     <string name="speed_title">Drinking Speed</string>
-    <string name="liter_format">%.1fL</string>
 
     <!-- Speed Measure Fragment -->
     <string name="input_hint">Volume to Drink(ml)</string>
@@ -78,5 +80,24 @@
     <string name="year_format">%d</string>
     <string name="selected_date_format">%s %s\n%s</string>
 
+    <!-- Stats Fragment -->
+    <string name="stats_title">Stats</string>
+    <string name="stats_total_summary_title">Total Records</string>
+    <string name="stats_date_format">%s %s, %s</string>
+    <string name="stats_month_format">%s %s</string>
+    <string name="drank_total">Drank Total</string>
+    <string name="achieved_days">Total Goal Achievements</string>
+    <plurals name="day_format">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <string name="most_drank">The Highest Record</string>
+    <string name="most_drank_date">The Highest Record Date</string>
+    <string name="month_summary_title">Month Summary</string>
+    <string name="month_summary_goal">Total Goal</string>
+    <string name="month_summary_drank">Drank Total</string>
+    <string name="month_summary_achieved_days">Goal Achievements</string>
+    <string name="month_summary_most_drank">The Highest Record</string>
+    <string name="month_summary_most_drank_date">The Highest Record Date</string>
 
 </resources>

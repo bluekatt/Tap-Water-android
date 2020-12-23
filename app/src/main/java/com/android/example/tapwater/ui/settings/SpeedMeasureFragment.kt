@@ -14,6 +14,8 @@ import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import com.android.example.tapwater.MainActivity
@@ -33,8 +35,8 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         }
     }
 
-    @Inject lateinit var viewModel: SpeedMeasureViewModel
-    private lateinit var binding: FragmentSpeedMeasureBinding
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    val viewModel: SpeedMeasureViewModel by viewModels { viewModelFactory }
     private lateinit var pref: SharedPreferences
 
     @SuppressLint("ClickableViewAccessibility")
@@ -45,7 +47,7 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         (requireActivity().application as MyApplication).appComponent.inject(this)
 
         pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_speed_measure, container, false)
+        val binding: FragmentSpeedMeasureBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_speed_measure, container, false)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -93,12 +95,9 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
 
     override fun onStart() {
         super.onStart()
-        binding.root.layoutParams.height = (requireActivity().resources.displayMetrics.heightPixels)
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
-        return (dialog as BottomSheetDialog).apply {
+        view?.layoutParams?.height = (requireActivity().resources.displayMetrics.heightPixels)
+        dialog?.window?.setDimAmount(0f)
+        (dialog as BottomSheetDialog).apply {
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
             behavior.skipCollapsed = true
         }

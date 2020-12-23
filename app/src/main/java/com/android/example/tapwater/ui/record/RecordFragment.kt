@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.android.example.tapwater.MyApplication
 import com.android.example.tapwater.R
 import com.android.example.tapwater.databinding.FragmentRecordBinding
@@ -15,7 +17,8 @@ import javax.inject.Inject
 
 class RecordFragment : Fragment() {
 
-    @Inject lateinit var viewModel: RecordViewModel
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    val viewModel: RecordViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
             inflater: LayoutInflater,

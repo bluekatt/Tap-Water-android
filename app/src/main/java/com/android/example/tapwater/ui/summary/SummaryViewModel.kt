@@ -2,6 +2,7 @@ package com.android.example.tapwater.ui.summary
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.lifecycle.*
 import com.android.example.tapwater.R
 import com.android.example.tapwater.componentsToDateString
@@ -18,7 +19,7 @@ class SummaryViewModel @Inject constructor(
     val context: Context
 ) : ViewModel() {
     private val dayOfMonth = arrayOf(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
-    val today = CalendarDay.today()
+    private val today = CalendarDay.today()
 
     val records = dayRecordDao.getAllRecords()
 
@@ -30,9 +31,13 @@ class SummaryViewModel @Inject constructor(
     val selectedRecord: LiveData<DayRecord?>
         get() = _selectedRecord
 
-    private val _selectedDate = MutableLiveData<String>()
-    val selectedDate: LiveData<String>
+    private val _selectedDate = MutableLiveData<CalendarDay>()
+    val selectedDate: LiveData<CalendarDay>
         get() = _selectedDate
+
+    private val _navigateToMonthSummary = MutableLiveData<Boolean>()
+    val navigateToMonthSummary: LiveData<Boolean>
+        get() = _navigateToMonthSummary
 
     private val yearFirst = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         context.resources.configuration.locales.get(0).language == "ko"
@@ -81,11 +86,70 @@ class SummaryViewModel @Inject constructor(
         }
     }
 
+    val selectedDateText = Transformations.map(selectedDate) {
+        val date = selectedDate.value
+        if(date!=null) {
+            if(yearFirst) {
+                context.getString(R.string.selected_date_format, date.year.toString(), date.month.toString(), date.day.toString())
+            } else {
+                val monthText = context.resources.getStringArray(R.array.month_label_short)[date.month]
+                context.getString(R.string.selected_date_format, monthText, date.day.toString(), date.year.toString())
+            }
+        } else {
+            ""
+        }
+    }
+
+    val totalDrankText = Transformations.map(records) { records ->
+        var total = 0f
+        records.forEach {
+            total += it.drankToday
+        }
+        context.getString(R.string.liter_format, total)
+    }
+
+    val achievedDays = Transformations.map(records) { records ->
+        var days = 0
+        records.forEach {
+            if(it.drankToday>=it.dailyGoal) days++
+        }
+        context.resources.getQuantityString(R.plurals.day_format, days, days)
+    }
+
+    val mostDrank = Transformations.map(records) { records ->
+        var mostDrank = 0f
+        records.forEach { record ->
+            if(mostDrank <= record.drankToday) {
+                mostDrank = record.drankToday
+            }
+        }
+        context.getString(R.string.liter_format, mostDrank)
+    }
+
+    val mostDrankDate = Transformations.map(records) { records ->
+        var mostDrank = 0f
+        var date = ""
+        records.forEach { record ->
+            if(mostDrank <= record.drankToday) {
+                mostDrank = record.drankToday
+                date = record.date
+            }
+        }
+        val components = dateStringToComponents(date).map { it.toString() }
+        if(yearFirst) {
+            context.getString(R.string.stats_date_format, components[0], components[1], components[2])
+        } else {
+            val monthText = context.resources.getStringArray(R.array.month_label_short)[components[1].toInt()]
+            context.getString(R.string.stats_date_format, monthText, components[2], components[0])
+        }
+    }
+
     val lastDate = CalendarDay.from(today.year, today.month, dayOfMonth[today.month] + if(today.month==2 && today.year%4==0) 1 else 0)
 
     init {
         setMonthTitle(0, today.month, false)
         setSelectedRecord(today)
+        Log.i("tws", "viewmodel init!")
     }
 
     fun setMonthTitle(year: Int, month: Int, showYear: Boolean) {
@@ -106,11 +170,14 @@ class SummaryViewModel @Inject constructor(
             val dateString = componentsToDateString(date.year, date.month, date.day)
             _selectedRecord.value = dayRecordDao.get(dateString)
         }
-        _selectedDate.value = if(yearFirst) {
-            context.getString(R.string.selected_date_format, date.year.toString(), date.month.toString(), date.day.toString())
-        } else {
-            val monthText = context.resources.getStringArray(R.array.month_label_short)[date.month]
-            context.getString(R.string.selected_date_format, monthText, date.day.toString(), date.year.toString())
-        }
+        _selectedDate.value = date
+    }
+
+    fun onMonthSummaryButtonClicked() {
+        _navigateToMonthSummary.value = true
+    }
+
+    fun onMonthSummaryNavigated() {
+        _navigateToMonthSummary.value = false
     }
 }

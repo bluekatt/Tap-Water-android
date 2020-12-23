@@ -11,4 +11,5 @@
     <declare-styleable name="SpeedPreference">
         <attr name="defaultSpeed" format="float" />
     </declare-styleable>
+
 </resources>

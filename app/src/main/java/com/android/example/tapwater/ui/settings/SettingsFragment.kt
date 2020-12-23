@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.android.example.tapwater.MyApplication
@@ -13,7 +15,8 @@ import javax.inject.Inject
 class SettingsFragment : PreferenceFragmentCompat() {
     private val DIALOG_FRAGMENT_TAG = "NumberPickerDialog"
 
-    @Inject lateinit var viewModel: SettingsViewModel
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    val viewModel: SettingsViewModel by viewModels { viewModelFactory }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         (requireActivity().application as MyApplication).appComponent.inject(this)
@@ -24,7 +27,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             builder.setTitle(getString(R.string.dialog_remove_record_title))
             builder.setMessage(getString(R.string.dialog_remove_record_content))
 
-            builder.setNegativeButton(getString(R.string.dialog_cancel_button)) { dialog, id ->
+            builder.setNegativeButton(getString(R.string.dialog_cancel_button)) { dialog, _ ->
                 dialog.cancel()
             }
 

@@ -76,19 +76,18 @@
             app:layout_constraintTop_toTopOf="@+id/cup_button2"
             app:srcCompat="@drawable/cup_filled_64" />
 
-        <ImageView
+        <Button
             android:id="@+id/info_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TapWater.Button.Icon.Gray"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="5dp"
-            android:contentDescription="@string/info_button"
-            android:src="@drawable/ic_info_24"
+            app:icon="@drawable/ic_info_24"
             app:layout_constraintBottom_toBottomOf="@+id/volume_input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/volume_input"
-            app:layout_constraintTop_toTopOf="@+id/volume_input"
-            app:tint="@android:color/darker_gray" />
+            app:layout_constraintTop_toTopOf="@+id/volume_input" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/drink_complete_button"

@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.android.example.tapwater.databinding.FragmentStartGoalSetBinding
 import javax.inject.Inject
 
 class StartGoalSetFragment : Fragment() {
 
-    @Inject lateinit var viewModel: StartGoalSetViewModel
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    val viewModel: StartGoalSetViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,6 +1,8 @@
-package com.android.example.tapwater.database
+package com.android.example.tapwater.di
 
 import android.content.Context
+import com.android.example.tapwater.database.AppDatabase
+import com.android.example.tapwater.database.DayRecordDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
