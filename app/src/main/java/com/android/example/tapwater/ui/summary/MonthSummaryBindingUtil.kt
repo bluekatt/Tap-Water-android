@@ -5,6 +5,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.android.example.tapwater.R
 import com.android.example.tapwater.dateStringToComponents
+import com.android.example.tapwater.getFormattedDate
+import com.android.example.tapwater.getFormattedMonth
 
 @BindingAdapter("totalGoal")
 fun TextView.setTotalGoal(item: MonthSummaryItem?) {
@@ -36,41 +38,15 @@ fun TextView.setMostDrank(item: MonthSummaryItem?) {
 
 @BindingAdapter("mostDrankDate")
 fun TextView.setMostDrankDate(item: MonthSummaryItem?) {
-    val yearFirst = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        context.resources.configuration.locales.get(0).language == "ko"
-    } else {
-        context.resources.configuration.locale.language == "ko"
-    }
-
     item?.let {
-        val components = dateStringToComponents(item.mostDrankDate).map { it.toString() }
-        text = if(yearFirst) {
-            context.getString(R.string.stats_date_format, components[0], components[1], components[2])
-        } else {
-            val monthText = context.resources.getStringArray(R.array.month_label_short)[components[1].toInt()]
-            context.getString(R.string.stats_date_format, monthText, components[2], components[0])
-        }
+        text = getFormattedDate(item.mostDrankDate, R.string.stats_date_format, context.resources)
     }
 }
 
 @BindingAdapter("monthTitle")
 fun TextView.setMonthTitle(item: MonthSummaryItem?) {
-    val yearFirst = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        context.resources.configuration.locales.get(0).language == "ko"
-    } else {
-        context.resources.configuration.locale.language == "ko"
-    }
-
     item?.let {
-        val year = item.month.substring(0, 4)
-        val month = item.month.substring(4, 6)
-        text = if (yearFirst) {
-            context.getString(R.string.stats_month_format, year, month)
-        } else {
-            val monthText =
-                context.resources.getStringArray(R.array.month_label)[month.toInt()]
-            context.getString(R.string.stats_month_format, monthText, year)
-        }
+        text = getFormattedMonth(item.month, false, context.resources)
     }
 }
 

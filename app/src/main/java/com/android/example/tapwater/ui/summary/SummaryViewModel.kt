@@ -4,12 +4,10 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.lifecycle.*
+import com.android.example.tapwater.*
 import com.android.example.tapwater.R
-import com.android.example.tapwater.componentsToDateString
 import com.android.example.tapwater.database.DayRecord
 import com.android.example.tapwater.database.DayRecordDao
-import com.android.example.tapwater.dateStringToComponents
-import com.android.example.tapwater.floorDecimal
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -64,7 +62,7 @@ class SummaryViewModel @Inject constructor(
         if(record==null) {
             "0%"
         } else {
-            "${floorDecimal(record.drankToday / record.dailyGoal * 100f)}%"
+            context.getString(R.string.percentage_format, record.drankToday / record.dailyGoal * 100f)
         }
     }
 
@@ -135,13 +133,46 @@ class SummaryViewModel @Inject constructor(
                 date = record.date
             }
         }
-        val components = dateStringToComponents(date).map { it.toString() }
-        if(yearFirst) {
-            context.getString(R.string.stats_date_format, components[0], components[1], components[2])
-        } else {
-            val monthText = context.resources.getStringArray(R.array.month_label_short)[components[1].toInt()]
-            context.getString(R.string.stats_date_format, monthText, components[2], components[0])
+        getFormattedDate(date, R.string.stats_date_format, context.resources)
+    }
+
+    val monthItemList = Transformations.map(records) { records ->
+        val itemList: MutableList<MonthSummaryItem> = mutableListOf()
+        records.forEach { record ->
+            val item = itemList.find { it.month == record.date.substring(0, 6) }
+            if(item == null) {
+                if(record.drankToday!=0f) itemList.add(MonthSummaryItem(record))
+                else itemList.add(MonthSummaryItem(record.date.substring(0, 6)))
+            } else {
+                if(record.drankToday!=0f) {
+                    item.totalGoal += record.dailyGoal
+                    item.totalDrank += record.drankToday
+                    item.achievedDays += if(record.drankToday >= record.dailyGoal) 1 else 0
+                    if(item.mostDrank <= record.drankToday) {
+                        item.mostDrankDate = record.date
+                        item.mostDrank = record.drankToday
+                    }
+                }
+            }
         }
+        itemList.sortBy { it.month }
+        val iterator = itemList.listIterator()
+        while(iterator.hasNext()) {
+            val cur = iterator.next()
+            if(!iterator.hasNext()) break
+            val next = iterator.next()
+            val nextMonth = if(cur.month.toInt()%100 == 12) {
+                "${cur.month.toInt()+100-11}"
+            } else {
+                "${cur.month.toInt()+1}"
+            }
+            if(nextMonth != next.month){
+                iterator.previous()
+                iterator.add(MonthSummaryItem(nextMonth))
+                iterator.previous()
+            }
+        }
+        itemList
     }
 
     val lastDate = CalendarDay.from(today.year, today.month, dayOfMonth[today.month] + if(today.month==2 && today.year%4==0) 1 else 0)
@@ -149,7 +180,6 @@ class SummaryViewModel @Inject constructor(
     init {
         setMonthTitle(0, today.month, false)
         setSelectedRecord(today)
-        Log.i("tws", "viewmodel init!")
     }
 
     fun setMonthTitle(year: Int, month: Int, showYear: Boolean) {

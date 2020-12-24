@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="android.view.View" />
         <variable
             name="item"
             type="com.android.example.tapwater.ui.summary.MonthSummaryItem" />
@@ -14,6 +15,14 @@
         <variable
             name="position"
             type="int" />
+
+        <variable
+            name="showLeft"
+            type="boolean" />
+
+        <variable
+            name="showRight"
+            type="boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -176,6 +185,7 @@
             android:layout_height="45dp"
             android:layout_marginStart="16dp"
             android:onClick="@{() -> clickListener.onClick(position-1)}"
+            android:visibility="@{showLeft ? View.VISIBLE : View.GONE}"
             app:icon="@drawable/ic_keyboard_arrow_left_24"
             app:layout_constraintBottom_toBottomOf="@+id/month_title"
             app:layout_constraintStart_toStartOf="parent"
@@ -185,6 +195,7 @@
             android:id="@+id/right_button"
             style="@style/TapWater.Button.Icon.Gray"
             android:onClick="@{() -> clickListener.onClick(position+1)}"
+            android:visibility="@{showRight ? View.VISIBLE : View.GONE}"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginEnd="16dp"

@@ -44,7 +44,7 @@
             app:minValue="0"
             app:maxValue="5"
             app:stepSize="0.1"
-            app:formatString="@string/liter_format"
+            app:formatString="@string/liter_format_short"
             app:key="daily_goal"
             app:title="@string/daily_goal_title"
             app:useSimpleSummaryProvider="true" />

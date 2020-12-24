@@ -35,6 +35,11 @@ class CirclePercentageView(context: Context, attrs: AttributeSet): View(context,
         }
     }
 
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        drew = 0f
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 

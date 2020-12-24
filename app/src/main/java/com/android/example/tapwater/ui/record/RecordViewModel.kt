@@ -39,7 +39,7 @@ class RecordViewModel @Inject constructor(
         get() = _isDrinking
 
     val drankPercentageString = Transformations.map(drankPercentage) {
-        "${floorDecimal(it)}%"
+        context.getString(R.string.percentage_format, it)
     }
 
     val drankTodayString = Transformations.map(drankToday) {

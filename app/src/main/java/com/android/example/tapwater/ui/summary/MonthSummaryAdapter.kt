@@ -1,7 +1,6 @@
 package com.android.example.tapwater.ui.summary
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -24,31 +23,16 @@ class MonthSummaryAdapter(val monthSummaryListener: MonthSummaryListener): Recyc
             binding.item = item
             binding.position = position
             binding.clickListener = monthSummaryListener
-            if(position==totalCount-1) binding.rightButton.visibility = View.GONE
-            if(position==0) binding.leftButton.visibility = View.GONE
+            binding.showLeft = position!=0
+            binding.showRight = position!=totalCount-1
             binding.executePendingBindings()
         }
     }
 
-    private val itemList: MutableList<MonthSummaryItem> = mutableListOf()
+    private var itemList: List<MonthSummaryItem> = emptyList()
 
-    fun setItemList(recordList: List<DayRecord>) {
-        recordList.forEach { record ->
-            val item = itemList.find { it.month == record.date.substring(0, 6) }
-            if(item == null) {
-                itemList.add(MonthSummaryItem(record))
-            } else {
-                if(record.drankToday!=0f) item.totalGoal += record.dailyGoal
-                item.totalDrank += record.drankToday
-                item.achievedDays += if(record.drankToday >= record.dailyGoal) 1 else 0
-                if(item.mostDrank <= record.drankToday) {
-                    item.mostDrankDate = record.date
-                    item.mostDrank = record.drankToday
-                }
-            }
-        }
-
-        itemList.sortBy { it.month }
+    fun setItemList(list: List<MonthSummaryItem>) {
+        itemList = list
 
         notifyDataSetChanged()
     }
@@ -72,11 +56,18 @@ class MonthSummaryListener(val clickListener: (position: Int) -> Unit) {
     fun onClick(position: Int) = clickListener(position)
 }
 
-data class MonthSummaryItem(private val firstRecord: DayRecord) {
-    val month = firstRecord.date.substring(0, 6)
-    var totalGoal = firstRecord.dailyGoal
-    var totalDrank = firstRecord.drankToday
-    var achievedDays = if(firstRecord.drankToday >= firstRecord.dailyGoal) 1 else 0
-    var mostDrankDate = firstRecord.date
-    var mostDrank = firstRecord.drankToday
+data class MonthSummaryItem(val month: String) {
+    var totalGoal = 0f
+    var totalDrank = 0f
+    var achievedDays = 0
+    var mostDrankDate: String? = null
+    var mostDrank = 0f
+
+    constructor(firstRecord: DayRecord): this(firstRecord.date.substring(0,6)) {
+        totalGoal = firstRecord.dailyGoal
+        totalDrank = firstRecord.drankToday
+        achievedDays = if(firstRecord.drankToday >= firstRecord.dailyGoal) 1 else 0
+        mostDrankDate = firstRecord.date
+        mostDrank = firstRecord.drankToday
+    }
 }
