@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="item"
+            type="com.android.example.tapwater.ui.summary.MonthSummaryItem" />
+
+        <variable
+            name="clickListener"
+            type="com.android.example.tapwater.ui.summary.MonthSummaryListener" />
+
+        <variable
+            name="position"
+            type="int" />
+
+        <variable
+            name="showLeft"
+            type="boolean" />
+
+        <variable
+            name="showRight"
+            type="boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.android.example.tapwater.ui.summary.CirclePercentageView
+            android:id="@+id/circlePercentageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/month_title"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:percentage="@{item}" />
+
+        <TextView
+            android:id="@+id/month_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:monthTitle="@{item}"
+            tools:text="December 2020" />
+
+        <TextView
+            android:id="@+id/total_drank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/month_summary_drank"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circlePercentageView" />
+
+        <TextView
+            android:id="@+id/total_drank_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/total_drank"
+            app:layout_constraintTop_toBottomOf="@+id/total_drank"
+            app:totalDrank="@{item}"
+            tools:text="3L" />
+
+        <TextView
+            android:id="@+id/most_drank_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/most_drank"
+            app:layout_constraintTop_toBottomOf="@+id/most_drank"
+            app:mostDrank="@{item}"
+            tools:text="3L" />
+
+        <TextView
+            android:id="@+id/most_drank_date_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mostDrankDate="@{item}"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/most_drank_date"
+            tools:text="3L" />
+
+        <TextView
+            android:id="@+id/achieved_days_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            app:achievedDays="@{item}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/achieved_days"
+            app:layout_constraintTop_toBottomOf="@+id/achieved_days"
+            tools:text="3L" />
+
+        <TextView
+            android:id="@+id/total_goal_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:totalGoal="@{item}"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/total_goal"
+            tools:text="3L" />
+
+        <TextView
+            android:id="@+id/most_drank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/month_summary_most_drank"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/total_drank_value" />
+
+        <TextView
+            android:id="@+id/achieved_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/achieved_days"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/most_drank_value" />
+
+        <TextView
+            android:id="@+id/total_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/month_summary_goal"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/total_drank"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/total_drank" />
+
+        <TextView
+            android:id="@+id/most_drank_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/month_summary_most_drank_date"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/most_drank"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/most_drank" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/percentage_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryColor"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:percentage="@{item}"
+            app:layout_constraintBottom_toBottomOf="@+id/circlePercentageView"
+            app:layout_constraintEnd_toEndOf="@+id/circlePercentageView"
+            app:layout_constraintStart_toStartOf="@+id/circlePercentageView"
+            app:layout_constraintTop_toTopOf="@+id/circlePercentageView"
+            tools:text="80%" />
+
+        <Button
+            android:id="@+id/left_button"
+            style="@style/TapWater.Button.Icon.Gray"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:onClick="@{() -> clickListener.onClick(position-1)}"
+            android:visibility="@{showLeft ? View.VISIBLE : View.GONE}"
+            app:icon="@drawable/ic_keyboard_arrow_left_24"
+            app:layout_constraintBottom_toBottomOf="@+id/month_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/month_title" />
+
+        <Button
+            android:id="@+id/right_button"
+            style="@style/TapWater.Button.Icon.Gray"
+            android:onClick="@{() -> clickListener.onClick(position+1)}"
+            android:visibility="@{showRight ? View.VISIBLE : View.GONE}"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="16dp"
+            app:icon="@drawable/ic_keyboard_arrow_right_24"
+            app:layout_constraintBottom_toBottomOf="@+id/month_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/month_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

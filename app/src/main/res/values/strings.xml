@@ -7,7 +7,13 @@
     <string name="title_notification_settings">Notification Settings</string>
     <string name="title_record_settings">Record Settings</string>
     <string name="title_activity_start">StartActivity</string>
+    <string name="title_month_summary">Month Summary</string>
     <string name="drink_button">Drink</string>
+    <string name="liter_format">%.2fL</string>
+    <string name="liter_format_short">%.1fL</string>
+    <string name="percentage_format">%.1f%%</string>
+    <string name="month_format">%s %s</string>
+    <string name="month_format_two_lines">%s\n%s</string>
 
     <!-- Start Goal Set Fragment -->
     <string name="goal_set_help_text">Please set the amount you try to drink a day.</string>
@@ -15,8 +21,8 @@
 
     <!-- Record Fragment -->
     <string name="percentage">%s%%</string>
-    <string name="drank_today">current: %sL</string>
-    <string name="daily_goal">goal: %sL</string>
+    <string name="drank_today">Current: %sL</string>
+    <string name="daily_goal">Goal: %sL</string>
 
     <!-- Settings Fragment -->
     <string name="category_general">General</string>
@@ -25,8 +31,8 @@
     <string name="info_title">App Info</string>
     <string name="notification_title">Notification</string>
     <string name="record_title">Record</string>
-    <string name="remove_record_title">Remove Records</string>
-    <string name="dialog_remove_record_title">Remove Records</string>
+    <string name="remove_record_title">Clear Records</string>
+    <string name="dialog_remove_record_title">Clear Records</string>
     <string name="dialog_remove_record_content">This will remove all the records up until now.</string>
     <string name="dialog_cancel_button">Cancel</string>
     <string name="dialog_remove_button">Remove</string>
@@ -43,14 +49,13 @@
     <!-- Record Preferences -->
     <string name="daily_goal_title">Daily Goal</string>
     <string name="speed_title">Drinking Speed</string>
-    <string name="liter_format">%.1fL</string>
 
     <!-- Speed Measure Fragment -->
     <string name="input_hint">Volume to Drink(ml)</string>
-    <string name="tip_text">Enter the volume to drink then as you touch empty cup,\ndrink water to measure drinking speed</string>
+    <string name="tip_text">Step 1: Enter volume\nStep 2: Touch the empty cup\nStep 3: Drink water to measure drinking speed</string>
     <string name="drink_complete">Done</string>
     <string name="measure_again">Measure Again</string>
-    <string name="measure_complete">Measure Complete</string>
+    <string name="measure_complete">Measuring Complete</string>
     <string name="cup_button1">Cup Button1</string>
     <string name="cup_button2">Cup Button2</string>
     <string name="cup_button3">Cup Button3</string>
@@ -67,7 +72,7 @@
 
     <!-- Notification -->
     <string name="notification_title_text">Drink Water</string>
-    <string name="notification_content_text">You haven\'t drunk the amount you aimed today!</string>
+    <string name="notification_content_text">You haven\'t achieved the amount you set today yet!</string>
     <string name="notification_channel_description">Drink Water Reminder</string>
 
     <!-- Summary Fragment -->
@@ -78,5 +83,25 @@
     <string name="year_format">%d</string>
     <string name="selected_date_format">%s %s\n%s</string>
 
+    <!-- Stats Fragment -->
+    <string name="stats_title">Stats</string>
+    <string name="stats_total_summary_title">Total Records</string>
+    <string name="stats_date_format">%s %s, %s</string>
+    <string name="drank_total">Total Drank</string>
+    <string name="achieved_days">Goal Met</string>
+    <plurals name="day_format">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <string name="most_drank">Highest Record</string>
+    <string name="most_drank_date">Highest Record Date</string>
+    <string name="summary_chart_title">Summary Chart</string>
+    <string name="summary_chart_no_data_text">No Records Available</string>
+    <string name="month_summary_title">Month Summary</string>
+    <string name="month_summary_goal">Total Goal</string>
+    <string name="month_summary_drank">Total Drank</string>
+    <string name="month_summary_achieved_days">Goal Met</string>
+    <string name="month_summary_most_drank">Highest Record</string>
+    <string name="month_summary_most_drank_date">Highest Record Date</string>
 
 </resources>

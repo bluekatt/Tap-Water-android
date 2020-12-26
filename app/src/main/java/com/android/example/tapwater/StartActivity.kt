@@ -1,7 +1,9 @@
 package com.android.example.tapwater
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 
 class StartActivity : AppCompatActivity() {
 
@@ -9,6 +11,10 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        window.setDecorFitsSystemWindows(false)
+//        window.setDecorFitsSystemWindows(false)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
     }
 }

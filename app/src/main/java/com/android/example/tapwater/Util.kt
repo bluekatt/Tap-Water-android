@@ -1,5 +1,7 @@
 package com.android.example.tapwater
 
+import android.content.res.Resources
+import android.os.Build
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -27,6 +29,47 @@ fun dateStringToComponents(date: String): List<Int> {
     val day = date.substring(6, 8).toInt()
 
     return listOf(year, month, day)
+}
+
+fun getFormattedDate(dateString: String?, formatType: Int, res: Resources): String {
+    val yearFirst = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        res.configuration.locales.get(0).language == "ko"
+    } else {
+        res.configuration.locale.language == "ko"
+    }
+
+    if(dateString==null) {
+        return "-"
+    }
+    val components = dateStringToComponents(dateString).map { it.toString() }
+    return if(yearFirst) {
+        res.getString(formatType, components[0], components[1], components[2])
+    } else {
+        val monthText = res.getStringArray(R.array.month_label_short)[components[1].toInt()]
+        res.getString(formatType, monthText, components[2], components[0])
+    }
+}
+
+fun getFormattedMonth(monthString: String?, lineBreak: Boolean, res: Resources): String {
+    val yearFirst = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        res.configuration.locales.get(0).language == "ko"
+    } else {
+        res.configuration.locale.language == "ko"
+    }
+
+    if(monthString==null) {
+        return "-"
+    }
+    val year = monthString.substring(0, 4)
+    val month = monthString.substring(4, 6).toInt().toString()
+    val resourceId = if(lineBreak) R.string.month_format_two_lines else R.string.month_format
+    return if (yearFirst) {
+        res.getString(resourceId, year, month)
+    } else {
+        val arrayId = if(lineBreak) R.array.month_label_short else R.array.month_label
+        val monthText = res.getStringArray(arrayId)[month.toInt()]
+        res.getString(resourceId, monthText, year)
+    }
 }
 
 fun componentsToDateString(year: Int, month: Int, day: Int): String {

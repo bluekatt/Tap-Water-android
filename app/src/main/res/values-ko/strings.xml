@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- General -->
     <string name="app_name">Tap Water</string>
     <string name="title_summary">요약</string>
@@ -7,7 +7,13 @@
     <string name="title_notification_settings">알림 설정</string>
     <string name="title_record_settings">기록 설정</string>
     <string name="title_activity_start">시작</string>
+    <string name="title_month_summary">월 기록 요약</string>
     <string name="drink_button">마시기</string>
+    <string name="liter_format">%.2fL</string>
+    <string name="liter_format_short">%.1fL</string>
+    <string name="percentage_format">%.1f%%</string>
+    <string name="month_format">%s년 %s월</string>
+    <string name="month_format_two_lines">%s년\n%s월</string>
 
     <!-- Start Goal Set Fragment -->
     <string name="goal_set_help_text">하루 목표량을 설정해주세요.</string>
@@ -45,7 +51,7 @@
 
     <!-- Speed Measure Fragment -->
     <string name="input_hint">마실 양(ml)</string>
-    <string name="tip_text">마실 양을 입력 후 빈 컵을 누르는 동시에\n물을 마시며 속도를 측정해주세요</string>
+    <string name="tip_text">1단계: 마실 양을 입력해주세요\n2단계: 빈 컵을 눌러주세요\n3단계: 물을 마시며 속도를 측정해주세요</string>
     <string name="drink_complete">완료</string>
     <string name="measure_again">다시 측정</string>
     <string name="measure_complete">측정 완료</string>
@@ -75,5 +81,25 @@
     <string name="selected_goal_format">목표: %.2fL</string>
     <string name="year_format">%d년</string>
     <string name="selected_date_format">%s년\n%s월 %s일</string>
+
+    <!-- Stats Fragment -->
+    <string name="stats_title">통계</string>
+    <string name="stats_date_format">%s년 %s월 %s일</string>
+    <string name="stats_total_summary_title">전체 기록</string>
+    <string name="drank_total">총 마신 양</string>
+    <string name="achieved_days">총 목표 달성</string>
+    <plurals name="day_format">
+        <item quantity="other">%d일</item>
+    </plurals>
+    <string name="most_drank">최고 기록</string>
+    <string name="most_drank_date">최고 기록일</string>
+    <string name="summary_chart_title">요약 그래프</string>
+    <string name="summary_chart_no_data_text">기록이 없습니다</string>
+    <string name="month_summary_title">월별 요약</string>
+    <string name="month_summary_goal">총 목표</string>
+    <string name="month_summary_drank">총 마신 양</string>
+    <string name="month_summary_achieved_days">목표 달성</string>
+    <string name="month_summary_most_drank">최고 기록</string>
+    <string name="month_summary_most_drank_date">최고 기록일</string>
 
 </resources>

@@ -76,19 +76,18 @@
             app:layout_constraintTop_toTopOf="@+id/cup_button2"
             app:srcCompat="@drawable/cup_filled_64" />
 
-        <ImageView
+        <Button
             android:id="@+id/info_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TapWater.Button.Icon.Gray"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="5dp"
-            android:contentDescription="@string/info_button"
-            android:src="@drawable/ic_info_24"
+            app:icon="@drawable/ic_info_24"
             app:layout_constraintBottom_toBottomOf="@+id/volume_input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/volume_input"
-            app:layout_constraintTop_toTopOf="@+id/volume_input"
-            app:tint="@android:color/darker_gray" />
+            app:layout_constraintTop_toTopOf="@+id/volume_input" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/drink_complete_button"
@@ -137,8 +136,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="@string/tip_text"
-            android:textAlignment="center"
-            android:visibility="@{(viewModel.measuring || viewModel.measuredCups == 3) ? View.GONE : View.VISIBLE}"
+            android:textAlignment="viewStart"
+            android:textSize="16sp"
+            android:visibility="@{(viewModel.measuring || viewModel.measuredCups == 3) ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/measure_again_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -196,12 +196,12 @@
             android:id="@+id/speed_indicator_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="16dp"
             android:text="@{viewModel.speedText}"
             android:textAlignment="center"
             android:textSize="20sp"
             android:visibility="@{viewModel.measuring ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@+id/measure_complete_button"
+            app:layout_constraintBottom_toTopOf="@+id/guide_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

@@ -8,10 +8,14 @@ import android.content.SharedPreferences
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import com.android.example.tapwater.MainActivity
@@ -31,8 +35,8 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         }
     }
 
-    @Inject lateinit var viewModel: SpeedMeasureViewModel
-    private lateinit var binding: FragmentSpeedMeasureBinding
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    val viewModel: SpeedMeasureViewModel by viewModels { viewModelFactory }
     private lateinit var pref: SharedPreferences
 
     @SuppressLint("ClickableViewAccessibility")
@@ -43,7 +47,7 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         (requireActivity().application as MyApplication).appComponent.inject(this)
 
         pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_speed_measure, container, false)
+        val binding: FragmentSpeedMeasureBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_speed_measure, container, false)
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -65,7 +69,13 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         val touchListener = {v: View, event: MotionEvent ->
             if(v.isClickable) {
                 when (event.action) {
-                    MotionEvent.ACTION_DOWN -> (v as ImageView).colorFilter = BlendModeColorFilter(Color.rgb(209, 209, 209), BlendMode.SRC_IN)
+                    MotionEvent.ACTION_DOWN -> {
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            (v as ImageView).colorFilter = BlendModeColorFilter(Color.rgb(209, 209, 209), BlendMode.SRC_IN)
+                        } else {
+                            (v as ImageView).setColorFilter(Color.rgb(209, 209, 209), PorterDuff.Mode.SRC_IN)
+                        }
+                    }
                     MotionEvent.ACTION_UP -> {
                         (v as ImageView).clearColorFilter()
                         v.performClick()
@@ -85,12 +95,9 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
 
     override fun onStart() {
         super.onStart()
-        binding.root.layoutParams.height = (requireActivity().windowManager.currentWindowMetrics.bounds.height() * 0.9).toInt()
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
-        return (dialog as BottomSheetDialog).apply {
+        view?.layoutParams?.height = (requireActivity().resources.displayMetrics.heightPixels)
+        dialog?.window?.setDimAmount(0f)
+        (dialog as BottomSheetDialog).apply {
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
             behavior.skipCollapsed = true
         }

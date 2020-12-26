@@ -8,7 +8,6 @@ import android.app.job.JobService
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import java.util.*
@@ -21,16 +20,14 @@ class ReminderJobService: JobService() {
             edit.putBoolean("reminder_first_call", false)
             edit.apply()
 
-            Log.i("twn", "first call")
             return false
         }
-        Log.i("twn", "send notification")
         val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
         val builder = NotificationCompat.Builder(this, "TAP_WATER")
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.ic_stat_name)
             .setContentTitle(getString(R.string.notification_title_text))
             .setContentText(getString(R.string.notification_content_text))
             .setPriority(NotificationCompat.PRIORITY_MAX)
