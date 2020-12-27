@@ -61,7 +61,21 @@
     <string name="cup_button3">Cup Button3</string>
     <string name="info_button">Info Button</string>
     <string name="speed_format">%.0fml/sec</string>
-    <string name="measure_background_text">Drink Water</string>
+    <string name="measure_background_text">Drink Water!</string>
+
+    <!-- Speed Measure Help Fragment -->
+    <string name="help_title">Volume</string>
+    <string name="help_detail">Please choose volume to drink for measurement.\nYou need to drink three times for measurement.</string>
+    <string name="soju_glass_title">Shot Glass</string>
+    <string name="soju_glass_volume">50ml</string>
+    <string name="paper_bag_cup_title">Paper Bag Cup</string>
+    <string name="paper_bag_cup_volume">45ml</string>
+    <string name="paper_cup_title">Paper Cup</string>
+    <string name="paper_cup_volume">160ml</string>
+    <string name="tall_tea_cup_title">Tall Tea Cup</string>
+    <string name="tall_tea_cup_volume">190ml</string>
+    <string name="beer_glass_title">Tall Water Glass</string>
+    <string name="beer_glass_volume">220ml</string>
 
     <!-- App Info Fragment -->
     <string name="update_available">Update is available</string>

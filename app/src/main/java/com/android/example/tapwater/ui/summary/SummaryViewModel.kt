@@ -203,11 +203,11 @@ class SummaryViewModel @Inject constructor(
         _selectedDate.value = date
     }
 
-    fun onMonthSummaryButtonClicked() {
+    fun onStatsButtonClicked() {
         _navigateToMonthSummary.value = true
     }
 
-    fun onMonthSummaryNavigated() {
+    fun onStatsNavigated() {
         _navigateToMonthSummary.value = false
     }
 }
