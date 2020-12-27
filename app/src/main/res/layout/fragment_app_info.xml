@@ -58,7 +58,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="@string/up_to_date" />
+            android:text="@string/up_to_date" />
 
         <TextView
             android:id="@+id/latest_version"

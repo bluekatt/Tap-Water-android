@@ -36,7 +36,7 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    val viewModel: SpeedMeasureViewModel by viewModels { viewModelFactory }
+    val viewModel: SpeedMeasureViewModel by viewModels({ this }) { viewModelFactory }
     private lateinit var pref: SharedPreferences
 
     @SuppressLint("ClickableViewAccessibility")
@@ -52,6 +52,10 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        binding.helpInfoButton.setOnClickListener {
+            viewModel.onHelpInfoButtonClicked()
+        }
+
         viewModel.measureComplete.observe(viewLifecycleOwner, {
             if(it && viewModel.speed.value!=null) {
                 pref.edit().putFloat("speed", viewModel.speed.value!!).apply()
@@ -63,6 +67,15 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
                     requireActivity().finish()
                 }
                 dismiss()
+            }
+        })
+
+        viewModel.navigateToHelpInfo.observe(viewLifecycleOwner, {
+            if(it) {
+                val speedMeasureHelpFragment = SpeedMeasureHelpFragment()
+                speedMeasureHelpFragment.setTargetFragment(this, 0)
+                speedMeasureHelpFragment.show(parentFragmentManager, "speedMeasureHelp")
+                viewModel.onHelpInfoNavigated()
             }
         })
 

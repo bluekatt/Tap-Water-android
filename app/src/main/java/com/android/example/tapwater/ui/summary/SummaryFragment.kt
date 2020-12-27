@@ -55,8 +55,8 @@ class SummaryFragment : Fragment() {
             viewModel.setSelectedRecord(date)
         }
 
-        binding.monthSummaryButton.setOnClickListener {
-            viewModel.onMonthSummaryButtonClicked()
+        binding.statsButton.setOnClickListener {
+            viewModel.onStatsButtonClicked()
         }
 
         viewModel.firstDate.observe(viewLifecycleOwner, {
@@ -86,7 +86,7 @@ class SummaryFragment : Fragment() {
             if(it) {
                 val monthSummaryFragment = StatsFragment()
                 monthSummaryFragment.show(parentFragmentManager, "MonthSummary")
-                viewModel.onMonthSummaryNavigated()
+                viewModel.onStatsNavigated()
             }
         })
 

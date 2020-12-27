@@ -30,7 +30,7 @@
             tools:text="December" />
 
         <Button
-            android:id="@+id/month_summary_button"
+            android:id="@+id/stats_button"
             style="@style/TapWater.Button.Icon.Gray"
             android:layout_width="45dp"
             android:layout_height="45dp"

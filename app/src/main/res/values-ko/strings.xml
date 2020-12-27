@@ -60,7 +60,21 @@
     <string name="cup_button3">컵 버튼3</string>
     <string name="info_button">더보기 버튼</string>
     <string name="speed_format">초당 %.0fml</string>
-    <string name="measure_background_text">물을 마시세요</string>
+    <string name="measure_background_text">물을 마시세요!</string>
+
+    <!-- Speed Measure Help Fragment -->
+    <string name="help_title">마실 양</string>
+    <string name="help_detail">속도 측정을 위해 마실 물의 양을 선택해주세요.\n측정을 위해서 물은 세 번 마셔야합니다.</string>
+    <string name="soju_glass_title">소주잔</string>
+    <string name="soju_glass_volume">50ml</string>
+    <string name="paper_bag_cup_title">종이봉투컵</string>
+    <string name="paper_bag_cup_volume">45ml</string>
+    <string name="paper_cup_title">일반종이컵</string>
+    <string name="paper_cup_volume">160ml</string>
+    <string name="tall_tea_cup_title">가정용 물컵</string>
+    <string name="tall_tea_cup_volume">190ml</string>
+    <string name="beer_glass_title">맥주 글라스</string>
+    <string name="beer_glass_volume">220ml</string>
 
     <!-- App Info Fragment -->
     <string name="update_available">업데이트가 가능합니다</string>
