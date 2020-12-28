@@ -71,32 +71,6 @@ class SpeedMeasureHelpFragment : BottomSheetDialogFragment() {
             dismiss()
         }
 
-        val touchListener = {v: View, event: MotionEvent ->
-            if(v.isClickable) {
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                            (v as ImageView).colorFilter = BlendModeColorFilter(Color.rgb(209, 209, 209), BlendMode.SRC_IN)
-                        } else {
-                            (v as ImageView).setColorFilter(Color.rgb(209, 209, 209), PorterDuff.Mode.SRC_IN)
-                        }
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        (v as ImageView).clearColorFilter()
-                        v.performClick()
-                    }
-                    MotionEvent.ACTION_CANCEL -> (v as ImageView).clearColorFilter()
-                }
-            }
-            true
-        }
-
-        binding.beerGlassButton.setOnTouchListener(touchListener)
-        binding.tallTeaCupButton.setOnTouchListener(touchListener)
-        binding.paperCupButton.setOnTouchListener(touchListener)
-        binding.sojuGlassButton.setOnTouchListener(touchListener)
-        binding.paperBagCupButton.setOnTouchListener(touchListener)
-
         return binding.root
     }
 

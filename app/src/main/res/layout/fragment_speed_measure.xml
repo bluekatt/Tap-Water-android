@@ -83,7 +83,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="5dp"
             android:enabled="@{viewModel.measuredCups == 0}"
-            app:icon="@drawable/ic_more_horiz_24"
+            app:icon="@drawable/ic_info_24"
             app:layout_constraintBottom_toBottomOf="@+id/volume_input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

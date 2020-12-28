@@ -64,7 +64,8 @@
 
     <!-- Speed Measure Help Fragment -->
     <string name="help_title">마실 양</string>
-    <string name="help_detail">속도 측정을 위해 마실 물의 양을 선택해주세요.\n측정을 위해서 물은 세 번 마셔야합니다.</string>
+    <string name="help_detail">속도 측정을 위해 마실 물의 양을 입력해주세요.\n측정을 위해서 물은 세 번 마셔야합니다.</string>
+    <string name="cup_selector_title">컵 종류로 선택</string>
     <string name="soju_glass_title">소주잔</string>
     <string name="soju_glass_volume">50ml</string>
     <string name="paper_bag_cup_title">종이봉투컵</string>

@@ -65,7 +65,8 @@
 
     <!-- Speed Measure Help Fragment -->
     <string name="help_title">Volume</string>
-    <string name="help_detail">Please choose volume to drink for measurement.\nYou need to drink three times for measurement.</string>
+    <string name="help_detail">Please enter volume to drink for measurement.\nYou need to drink three times for measurement.</string>
+    <string name="cup_selector_title">Choose by Cup Type</string>
     <string name="soju_glass_title">Shot Glass</string>
     <string name="soju_glass_volume">50ml</string>
     <string name="paper_bag_cup_title">Paper Bag Cup</string>

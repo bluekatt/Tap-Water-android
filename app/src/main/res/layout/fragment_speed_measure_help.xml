@@ -29,10 +29,11 @@
         <HorizontalScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:fillViewport="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/help_detail">
+            app:layout_constraintTop_toBottomOf="@+id/selector_title">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -40,161 +41,236 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="bottom">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/paper_bag_cup_button"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/cup_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="bottom"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/paper_bag_cup_button"
+                        android:id="@+id/paper_bag_cup_icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
+                        android:layout_marginTop="8dp"
                         android:contentDescription="@string/paper_bag_cup_title"
-                        android:focusable="true"
-                        app:srcCompat="@drawable/paper_bag_cup_icon" />
+                        app:layout_constraintBottom_toTopOf="@+id/paper_bag_cup_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/paper_bag_cup_icon"
+                        app:tint="@color/primaryTextColor" />
 
                     <TextView
                         android:id="@+id/paper_bag_cup_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/paper_bag_cup_title"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toTopOf="@+id/paper_bag_cup_volume"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/paper_bag_cup_volume"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/paper_bag_cup_volume"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/soju_glass_button"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/cup_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="bottom"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/soju_glass_button"
+                        android:id="@+id/soju_glass_icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
+                        android:layout_marginTop="8dp"
                         android:contentDescription="@string/soju_glass_title"
-                        android:focusable="true"
-                        app:srcCompat="@drawable/soju_glass_icon" />
+                        app:layout_constraintBottom_toTopOf="@+id/soju_glass_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/soju_glass_icon"
+                        app:tint="@color/primaryTextColor" />
 
                     <TextView
                         android:id="@+id/soju_glass_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/soju_glass_title"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toTopOf="@+id/soju_glass_volume"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/soju_glass_volume"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/soju_glass_volume"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/paper_cup_button"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/cup_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="bottom"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/paper_cup_button"
+                        android:id="@+id/paper_cup_icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
+                        android:layout_marginTop="8dp"
                         android:contentDescription="@string/paper_cup_title"
-                        android:focusable="true"
-                        app:srcCompat="@drawable/paper_cup_icon" />
+                        app:layout_constraintBottom_toTopOf="@+id/paper_cup_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/paper_cup_icon"
+                        app:tint="@color/primaryTextColor" />
 
                     <TextView
                         android:id="@+id/paper_cup_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/paper_cup_title"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toTopOf="@+id/paper_cup_volume"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/paper_cup_volume"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/paper_cup_volume"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/tall_tea_cup_button"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/cup_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="bottom"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/tall_tea_cup_button"
+                        android:id="@+id/tall_tea_cup_icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
+                        android:layout_marginTop="8dp"
                         android:contentDescription="@string/tall_tea_cup_title"
-                        android:focusable="true"
-                        app:srcCompat="@drawable/tall_tea_cup_icon" />
+                        app:layout_constraintBottom_toTopOf="@+id/tall_tea_cup_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/tall_tea_cup_icon"
+                        app:tint="@color/primaryTextColor" />
 
                     <TextView
                         android:id="@+id/tall_tea_cup_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/tall_tea_cup_title"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toTopOf="@+id/tall_tea_cup_volume"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/tall_tea_cup_volume"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/tall_tea_cup_volume"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/beer_glass_button"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/cup_button_selector"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="bottom"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/beer_glass_button"
+                        android:id="@+id/beer_glass_icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
+                        android:layout_marginTop="8dp"
                         android:contentDescription="@string/beer_glass_title"
-                        android:focusable="true"
-                        app:srcCompat="@drawable/beer_glass_icon" />
+                        app:layout_constraintBottom_toTopOf="@+id/beer_glass_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/beer_glass_icon"
+                        app:tint="@color/primaryTextColor" />
 
                     <TextView
                         android:id="@+id/beer_glass_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/beer_glass_title"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toTopOf="@+id/beer_glass_volume"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:id="@+id/beer_glass_volume"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:text="@string/beer_glass_volume"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        android:textAlignment="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
@@ -220,6 +296,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/close_button"
             app:layout_constraintStart_toEndOf="@+id/close_button"
             app:layout_constraintTop_toTopOf="@+id/close_button" />
+
+        <TextView
+            android:id="@+id/selector_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/cup_selector_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/help_detail" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
