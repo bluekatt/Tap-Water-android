@@ -3,6 +3,7 @@ package com.android.example.tapwater.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.tapwater.StartGoalSetViewModel
+import com.android.example.tapwater.ui.record.RecordDetailViewModel
 import com.android.example.tapwater.ui.record.RecordViewModel
 import com.android.example.tapwater.ui.settings.SettingsViewModel
 import com.android.example.tapwater.ui.settings.SpeedMeasureViewModel
@@ -21,7 +22,7 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SettingsViewModel::class)
-    abstract fun bindSettingsViewModel(summaryViewModel: SummaryViewModel): ViewModel
+    abstract fun bindSettingsViewModel(settingsViewModel: SettingsViewModel): ViewModel
 
     @Binds
     @IntoMap
@@ -42,5 +43,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(StartGoalSetViewModel::class)
     abstract fun bindStartGoalSetViewModel(startGoalSetViewModel: StartGoalSetViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RecordDetailViewModel::class)
+    abstract fun bindRecordDetailViewModel(recordDetailViewModel: RecordDetailViewModel): ViewModel
 }
 

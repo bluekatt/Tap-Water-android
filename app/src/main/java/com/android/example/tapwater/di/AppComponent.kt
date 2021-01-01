@@ -2,6 +2,7 @@ package com.android.example.tapwater.di
 
 import android.content.Context
 import com.android.example.tapwater.StartGoalSetFragment
+import com.android.example.tapwater.ui.record.RecordDetailFragment
 import com.android.example.tapwater.ui.record.RecordFragment
 import com.android.example.tapwater.ui.settings.SettingsFragment
 import com.android.example.tapwater.ui.settings.SpeedMeasureFragment
@@ -24,6 +25,7 @@ interface AppComponent {
 
     fun inject(fragment: StartGoalSetFragment)
     fun inject(fragment: RecordFragment)
+    fun inject(fragment: RecordDetailFragment)
     fun inject(fragment: SettingsFragment)
     fun inject(fragment: SpeedMeasureFragment)
     fun inject(fragment: SpeedMeasureHelpFragment)

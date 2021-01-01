@@ -37,6 +37,14 @@ class SummaryViewModel @Inject constructor(
     val navigateToMonthSummary: LiveData<Boolean>
         get() = _navigateToMonthSummary
 
+    private val _monthItemList = MutableLiveData<List<MonthSummaryItem>>()
+    val monthItemList: LiveData<List<MonthSummaryItem>>
+        get() = _monthItemList
+
+    private val _navigateToDetail = MutableLiveData<String?>()
+    val navigateToDetail: LiveData<String?>
+        get() = _navigateToDetail
+
     private val yearFirst = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         context.resources.configuration.locales.get(0).language == "ko"
     } else {
@@ -136,9 +144,39 @@ class SummaryViewModel @Inject constructor(
         getFormattedDate(date, R.string.stats_date_format, context.resources)
     }
 
-    val monthItemList = Transformations.map(records) { records ->
+
+    val lastDate = CalendarDay.from(today.year, today.month, dayOfMonth[today.month] + if(today.month==2 && today.year%4==0) 1 else 0)
+
+    init {
+        setMonthTitle(0, today.month, false)
+        setSelectedRecord(today)
+    }
+
+    fun setMonthTitle(year: Int, month: Int, showYear: Boolean) {
+        val monthText = context.resources.getStringArray(R.array.month_label)[month]
+        if(showYear) {
+            if(yearFirst) {
+                _monthTitle.value = context.getString(R.string.year_format, year) + " " + monthText
+            } else {
+                _monthTitle.value = monthText + " " + context.getString(R.string.year_format, year)
+            }
+        } else {
+            _monthTitle.value = monthText
+        }
+    }
+
+    fun setSelectedRecord(date: CalendarDay) {
+        viewModelScope.launch {
+            val dateString = componentsToDateString(date.year, date.month, date.day)
+            _selectedRecord.value = dayRecordDao.get(dateString)
+        }
+        _selectedDate.value = date
+    }
+
+    fun onStatsButtonClicked() {
+        _navigateToMonthSummary.value = true
         val itemList: MutableList<MonthSummaryItem> = mutableListOf()
-        records.forEach { record ->
+        records.value?.forEach { record ->
             val item = itemList.find { it.month == record.date.substring(0, 6) }
             if(item == null) {
                 if(record.drankToday!=0f) itemList.add(MonthSummaryItem(record))
@@ -172,42 +210,18 @@ class SummaryViewModel @Inject constructor(
                 iterator.previous()
             }
         }
-        itemList
-    }
-
-    val lastDate = CalendarDay.from(today.year, today.month, dayOfMonth[today.month] + if(today.month==2 && today.year%4==0) 1 else 0)
-
-    init {
-        setMonthTitle(0, today.month, false)
-        setSelectedRecord(today)
-    }
-
-    fun setMonthTitle(year: Int, month: Int, showYear: Boolean) {
-        val monthText = context.resources.getStringArray(R.array.month_label)[month]
-        if(showYear) {
-            if(yearFirst) {
-                _monthTitle.value = context.getString(R.string.year_format, year) + " " + monthText
-            } else {
-                _monthTitle.value = monthText + " " + context.getString(R.string.year_format, year)
-            }
-        } else {
-            _monthTitle.value = monthText
-        }
-    }
-
-    fun setSelectedRecord(date: CalendarDay) {
-        viewModelScope.launch {
-            val dateString = componentsToDateString(date.year, date.month, date.day)
-            _selectedRecord.value = dayRecordDao.get(dateString)
-        }
-        _selectedDate.value = date
-    }
-
-    fun onStatsButtonClicked() {
-        _navigateToMonthSummary.value = true
+        _monthItemList.value = itemList
     }
 
     fun onStatsNavigated() {
         _navigateToMonthSummary.value = false
+    }
+
+    fun onDetailButtonClicked() {
+        _navigateToDetail.value = selectedRecord.value?.date
+    }
+
+    fun onDetailNavigated() {
+        _navigateToDetail.value = null
     }
 }

@@ -5,8 +5,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [DayRecord::class], version = 2, exportSchema = false)
+@Database(entities = [DayRecord::class], version = 3, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract val dayRecordDao: DayRecordDao
 
@@ -23,12 +25,18 @@ abstract class AppDatabase: RoomDatabase() {
                         AppDatabase::class.java,
                         "app_database"
                     )
-                        .fallbackToDestructiveMigration()
+                        .addMigrations(MIGRATION_2_3)
                         .build()
                     INSTANCE = instance
                 }
                 return instance
             }
         }
+    }
+}
+
+val MIGRATION_2_3 = object: Migration(2,3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("ALTER TABLE day_record ADD COLUMN drink_log TEXT NOT NULL DEFAULT '[]'")
     }
 }

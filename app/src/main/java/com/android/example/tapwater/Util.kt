@@ -31,6 +31,30 @@ fun dateStringToComponents(date: String): List<Int> {
     return listOf(year, month, day)
 }
 
+fun getFormattedTime(timeString: String?, formatType: Int, res: Resources): String {
+    val aFirst = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        res.configuration.locales.get(0).language == "ko"
+    } else {
+        res.configuration.locale.language == "ko"
+    }
+
+    if(timeString==null) {
+        return ""
+    }
+    val components = timeString.split(":").map{ it.toInt() }.toMutableList()
+    var aMarker = if(aFirst) "오전" else "AM"
+    if(components[0]>12) {
+        if(components[0]!=24)
+            aMarker = if(aFirst) "오후" else "PM"
+        components[0] -= 12
+    }
+    return if(aFirst) {
+        res.getString(formatType, aMarker, components[0])
+    } else {
+        res.getString(formatType, components[0], aMarker)
+    }
+}
+
 fun getFormattedDate(dateString: String?, formatType: Int, res: Resources): String {
     val yearFirst = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         res.configuration.locales.get(0).language == "ko"
@@ -73,7 +97,7 @@ fun getFormattedMonth(monthString: String?, lineBreak: Boolean, res: Resources):
 }
 
 fun componentsToDateString(year: Int, month: Int, day: Int): String {
-    return "${year}${month}${day}"
+    return String.format("%d%02d%02d", year, month, day)
 }
 suspend fun getPlayStoreVersion(): String{
     var storeVersion = ""

@@ -14,6 +14,8 @@
     <string name="percentage_format">%.1f%%</string>
     <string name="month_format">%s년 %s월</string>
     <string name="month_format_two_lines">%s년\n%s월</string>
+    <string name="time_format">%s %d시</string>
+    <string name="time_format_short">%d시</string>
 
     <!-- Start Goal Set Fragment -->
     <string name="goal_set_help_text">하루 목표량을 설정해주세요.</string>
@@ -24,6 +26,30 @@
     <string name="drank_today">현재: %sL</string>
     <string name="daily_goal">목표: %sL</string>
 
+    <!-- Record Detail Fragment -->
+    <string name="record_detail_title">상세</string>
+    <string name="record_remove_last">기록 삭제</string>
+    <string name="record_detail_drank_today">마신 양</string>
+    <string name="record_detail_goal">목표</string>
+    <string name="record_detail_average">시간 당 평균</string>
+    <string name="record_detail_most_drank_time">가장 많이 마신 시간</string>
+    <string name="record_detail_drank_at_time">마신 양</string>
+    <string name="record_detail_now">현재</string>
+    <string name="record_detail_time_title">시간</string>
+    <string name="record_detail_drank_title">마신 양</string>
+    <string name="detail_chart_no_data_text">기록이 없습니다</string>
+    <string name="detail_dialog_remove_record_title">기록 삭제</string>
+    <string name="detail_dialog_remove_record_content">오늘 로그의 가장 최신 기록을 삭제합니다.</string>
+    <string name="detail_dialog_cancel_button">취소</string>
+    <string name="detail_dialog_remove_button">삭제</string>
+    <string name="detail_remove_toast">기록이 삭제되었습니다.</string>
+
+    <!-- Completed Fragment -->
+    <string name="complete_title">목표 달성!</string>
+    <string name="trophy_description">트로피</string>
+    <string name="complete_confirm">확인</string>
+    <string name="complete_show_calendar">달력 보기</string>
+
     <!-- Settings Fragment -->
     <string name="category_general">일반</string>
     <string name="category_notification">알림</string>
@@ -31,12 +57,12 @@
     <string name="info_title">앱 정보</string>
     <string name="notification_title">알림 설정</string>
     <string name="record_title">기록 설정</string>
-    <string name="remove_record_title">기록 삭제</string>
+    <string name="remove_record_title">기록 전체 삭제</string>
     <string name="dialog_remove_record_title">기록 삭제</string>
     <string name="dialog_remove_record_content">현재까지의 모든 물 기록량을 삭제합니다.</string>
     <string name="dialog_cancel_button">취소</string>
     <string name="dialog_remove_button">삭제</string>
-    <string name="remove_toast">모든 기록이 삭제되었습니다.</string>
+    <string name="clear_toast">모든 기록이 삭제되었습니다.</string>
 
     <!-- Notification Preference -->
     <string name="reminder_title">리마인더</string>

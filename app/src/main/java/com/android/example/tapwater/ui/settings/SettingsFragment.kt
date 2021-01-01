@@ -33,7 +33,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
             builder.setPositiveButton(getString(R.string.dialog_remove_button)) { _, _ ->
                 viewModel.removeData()
-                Toast.makeText(requireContext(), getString(R.string.remove_toast), Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), getString(R.string.clear_toast), Toast.LENGTH_LONG).show()
             }
 
             builder.show()

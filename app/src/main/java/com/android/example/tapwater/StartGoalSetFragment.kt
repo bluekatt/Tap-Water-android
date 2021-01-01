@@ -34,7 +34,7 @@ class StartGoalSetFragment : Fragment() {
         binding.numberPicker.maxValue = maxValue
         binding.numberPicker.displayedValues = Array(((maxValue - minValue+1)/stepSize).toInt()) { i ->
             val value = (i + minValue) * stepSize
-            requireContext().getString(R.string.liter_format, value)
+            requireContext().getString(R.string.liter_format_short, value)
         }
         binding.numberPicker.wrapSelectorWheel = false
 

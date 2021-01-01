@@ -1,12 +1,14 @@
 package com.android.example.tapwater.ui.record
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager
 import com.android.example.tapwater.R
 import com.android.example.tapwater.database.DayRecord
 import com.android.example.tapwater.database.DayRecordDao
+import com.android.example.tapwater.database.DrinkLogItem
 import com.android.example.tapwater.floorDecimal
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -19,8 +21,10 @@ class RecordViewModel @Inject constructor(
 ): ViewModel() {
     private val defaultSpeed  = 92f
     private val defaultGoal = 2f
+    private val dateDF = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+    private val timeDF = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
-    private lateinit var todayRecord: DayRecord
+    lateinit var todayRecord: DayRecord
 
     val drankPercentage = MediatorLiveData<Float>()
 
@@ -38,6 +42,10 @@ class RecordViewModel @Inject constructor(
     val isDrinking: LiveData<Boolean>
         get() = _isDrinking
 
+    private val _navigateToDetail = MutableLiveData<Boolean>()
+    val navigateToDetail: LiveData<Boolean>
+        get() = _navigateToDetail
+
     val drankPercentageString = Transformations.map(drankPercentage) {
         context.getString(R.string.percentage_format, it)
     }
@@ -48,6 +56,20 @@ class RecordViewModel @Inject constructor(
 
     val dailyGoalString = Transformations.map(dailyGoal) {
         context.resources.getString(R.string.daily_goal, floorDecimal(it))
+    }
+
+    val showCompleted = Transformations.map(isDrinking) {
+        if(!it) {
+            val alreadyCompleted = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("already_completed", false)
+            if(drankPercentage.value!!>=100f && !alreadyCompleted) {
+                PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("already_completed", true).apply()
+                true
+            } else {
+                false
+            }
+        } else {
+            false
+        }
     }
 
     init {
@@ -93,16 +115,15 @@ class RecordViewModel @Inject constructor(
     }
 
     private suspend fun getTodayRecordFromDB(): DayRecord {
-        val df = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
-
-        val today = df.format(Date())
+        val today = dateDF.format(Date())
 
         var record = dayRecordDao.get(today)
 
         while(record==null) {
-            record = DayRecord(dailyGoal = dailyGoal.value ?: defaultGoal, date = df.format(Date()))
+            record = DayRecord(dailyGoal = dailyGoal.value ?: defaultGoal, date = dateDF.format(Date()))
             dayRecordDao.insert(record)
             record = dayRecordDao.get(today)
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("already_completed", false).apply()
         }
         return record
     }
@@ -113,10 +134,24 @@ class RecordViewModel @Inject constructor(
 
     fun onStopClicked() {
         _isDrinking.value = false
+
+        val currentTime = timeDF.format(Date())
+
+        val drinkLog = todayRecord.drinkLog.toMutableList()
+        drinkLog.add(DrinkLogItem(currentTime, drankToday.value!! - todayRecord.drankToday))
+        todayRecord.drinkLog = drinkLog
         todayRecord.drankToday = drankToday.value!!
         viewModelScope.launch {
             updateRecordToDB(todayRecord)
         }
+    }
+
+    fun onDetailClicked() {
+        _navigateToDetail.value = true
+    }
+
+    fun onDetailNavigated() {
+        _navigateToDetail.value = false
     }
 
     private suspend fun updateRecordToDB(record: DayRecord) {

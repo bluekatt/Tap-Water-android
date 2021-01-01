@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,6 +13,7 @@ import com.android.example.tapwater.MyApplication
 import com.android.example.tapwater.R
 import com.android.example.tapwater.databinding.FragmentSummaryBinding
 import com.android.example.tapwater.dateStringToComponents
+import com.android.example.tapwater.ui.record.RecordDetailFragment
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import javax.inject.Inject
 
@@ -55,10 +57,6 @@ class SummaryFragment : Fragment() {
             viewModel.setSelectedRecord(date)
         }
 
-        binding.statsButton.setOnClickListener {
-            viewModel.onStatsButtonClicked()
-        }
-
         viewModel.firstDate.observe(viewLifecycleOwner, {
             binding.calendarView.state().edit()
                 .setMinimumDate(it)
@@ -90,6 +88,20 @@ class SummaryFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToDetail.observe(viewLifecycleOwner, {
+            if(it!=null) {
+                val recordDetailFragment = RecordDetailFragment()
+                recordDetailFragment.arguments = bundleOf("recordDate" to it)
+                recordDetailFragment.show(parentFragmentManager, "recordDetail")
+                viewModel.onDetailNavigated()
+            }
+        })
+
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.setSelectedRecord(viewModel.selectedDate.value!!)
     }
 }
