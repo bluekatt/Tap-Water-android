@@ -3,13 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.android.example.tapwater"
+        applicationId "com.android.parkjongseok.tapwater"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -22,6 +23,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    appName : "@string/app_name"
+            ]
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+            manifestPlaceholders = [
+                    appName : "@string/app_name_debug"
+            ]
         }
     }
     compileOptions {
@@ -54,8 +66,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'org.jsoup:jsoup:1.11.3'
-    implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
 
     //added by me
     def dagger_version = "2.27"
@@ -75,5 +85,11 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
+    implementation 'org.jsoup:jsoup:1.11.3'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
 }

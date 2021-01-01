@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.example.tapwater">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.android.parkjongseok.tapwater">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
-        android:name=".MyApplication"
+        tools:replace="label"
+        android:name="com.android.parkjongseok.tapwater.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="${appName}"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".StartActivity"
+            android:name="com.android.parkjongseok.tapwater.StartActivity"
             android:label="@string/title_activity_start">
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.android.parkjongseok.tapwater.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +30,7 @@
         </activity>
 
         <service
-            android:name=".ReminderJobService"
+            android:name="com.android.parkjongseok.tapwater.ReminderJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 

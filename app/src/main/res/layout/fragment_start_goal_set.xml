@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.android.example.tapwater.StartGoalSetViewModel" />
+            type="com.android.parkjongseok.tapwater.StartGoalSetViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

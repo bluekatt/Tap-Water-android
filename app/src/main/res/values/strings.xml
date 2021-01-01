@@ -1,6 +1,7 @@
 <resources>
     <!-- General -->
     <string name="app_name">Tap Water</string>
+    <string name="app_name_debug">Tap Water-Debug</string>
     <string name="title_summary">Summary</string>
     <string name="title_record">Record</string>
     <string name="title_settings">Settings</string>
@@ -14,33 +15,61 @@
     <string name="percentage_format">%.1f%%</string>
     <string name="month_format">%s %s</string>
     <string name="month_format_two_lines">%s\n%s</string>
+    <string name="time_format">%d %s</string>
+    <string name="time_format_short">%d</string>
 
     <!-- Start Goal Set Fragment -->
-    <string name="goal_set_help_text">Please set the amount you try to drink a day.</string>
-    <string name="goal_set_complete">Goal Set Completed</string>
+    <string name="goal_set_help_text">Please set the amount you want to drink a day.</string>
+    <string name="goal_set_complete">Goal Set</string>
 
     <!-- Record Fragment -->
     <string name="percentage">%s%%</string>
     <string name="drank_today">Current: %sL</string>
     <string name="daily_goal">Goal: %sL</string>
 
+    <!-- Record Detail Fragment -->
+    <string name="record_detail_title">Detail</string>
+    <string name="record_remove_last">Remove Record</string>
+    <string name="record_detail_drank_today">Drank</string>
+    <string name="record_detail_goal">Goal</string>
+    <string name="record_detail_average">Average per Hour</string>
+    <string name="record_detail_most_drank_time">Peak Time</string>
+    <string name="record_detail_drank_at_time">Drank</string>
+    <string name="record_detail_now">Now</string>
+    <string name="record_detail_time_title">Time</string>
+    <string name="record_detail_drank_title">Drank</string>
+    <string name="detail_chart_no_data_text">No Data</string>
+    <string name="detail_dialog_remove_record_title">Remove Record</string>
+    <string name="detail_dialog_remove_record_content">This will remove the latest record on today\'s log.</string>
+    <string name="detail_dialog_cancel_button">Cancel</string>
+    <string name="detail_dialog_remove_button">Remove</string>
+    <string name="detail_remove_toast">Record is removed.</string>
+
+    <!-- Completed Fragment -->
+    <string name="complete_title">Goal Achieved!</string>
+    <string name="trophy_description">Trophy</string>
+    <string name="complete_confirm">Confirm</string>
+    <string name="complete_show_calendar">Show Calendar</string>
+
     <!-- Settings Fragment -->
-    <string name="category_general">General</string>
     <string name="category_notification">Notification</string>
     <string name="category_record">Record</string>
+    <string name="category_about">About</string>
     <string name="info_title">App Info</string>
+    <string name="open_source_title">Open Source Licenses</string>
     <string name="notification_title">Notification</string>
     <string name="record_title">Record</string>
     <string name="remove_record_title">Clear Records</string>
     <string name="dialog_remove_record_title">Clear Records</string>
     <string name="dialog_remove_record_content">This will remove all the records up until now.</string>
     <string name="dialog_cancel_button">Cancel</string>
-    <string name="dialog_remove_button">Remove</string>
-    <string name="remove_toast">All Records are removed</string>
+    <string name="dialog_remove_button">Clear</string>
+    <string name="clear_toast">All Records are removed</string>
 
     <!-- Notification Preferences -->
     <string name="reminder_title">Reminder</string>
     <plurals name="hour_format">
+        <item quantity="zero">%d hour</item>
         <item quantity="one">%d hour</item>
         <item quantity="other">%d hours</item>
     </plurals>
@@ -85,6 +114,8 @@
     <string name="current_version">Current Version: %s</string>
     <string name="latest_version">Latest Version: %s</string>
 
+    <!-- Open Source Licenses Fragment -->
+
     <!-- Notification -->
     <string name="notification_title_text">Drink Water</string>
     <string name="notification_content_text">You haven\'t achieved the amount you set today yet!</string>
@@ -105,6 +136,7 @@
     <string name="drank_total">Total Drank</string>
     <string name="achieved_days">Goal Met</string>
     <plurals name="day_format">
+        <item quantity="zero">%d day</item>
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
     </plurals>

@@ -8,7 +8,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.android.example.tapwater.ui.record.RecordViewModel" />
+            type="com.android.parkjongseok.tapwater.ui.record.RecordViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,7 +87,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <com.android.example.tapwater.ui.record.WaterBackground
+        <com.android.parkjongseok.tapwater.ui.record.WaterBackground
             android:id="@+id/waterBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -95,6 +95,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/detail_button"
+            style="@style/TapWater.Button.Icon.Gray"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{() -> viewModel.onDetailClicked()}"
+            app:icon="@drawable/ic_more_horiz_24"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

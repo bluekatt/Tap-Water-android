@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/navigation_summary"
-        android:name="com.android.example.tapwater.ui.summary.SummaryFragment"
+        android:name="com.android.parkjongseok.tapwater.ui.summary.SummaryFragment"
         android:label="@string/title_summary"
         tools:layout="@layout/fragment_summary" />
 
     <fragment
         android:id="@+id/navigation_record"
-        android:name="com.android.example.tapwater.ui.record.RecordFragment"
+        android:name="com.android.parkjongseok.tapwater.ui.record.RecordFragment"
         android:label="@string/title_record"
         tools:layout="@layout/fragment_record" />
     <fragment
         android:id="@+id/navigation_settings_host"
-        android:name="com.android.example.tapwater.ui.settings.SettingsNavHostFragment"
+        android:name="com.android.parkjongseok.tapwater.ui.settings.SettingsNavHostFragment"
         android:label="fragment_settings_nav_host"
         tools:layout="@layout/fragment_settings_nav_host" />
 

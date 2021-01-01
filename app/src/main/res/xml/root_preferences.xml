@@ -4,41 +4,9 @@
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
-        app:title="@string/category_general">
-        <Preference
-            app:fragment="com.android.example.tapwater.ui.settings.AppInfoFragment"
-            app:key="app_info"
-            app:iconSpaceReserved="false"
-            app:title="@string/info_title" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
-        app:title="@string/category_notification" >
-
-        <SwitchPreference
-            app:iconSpaceReserved="false"
-            app:key="reminder"
-            app:title="@string/reminder_title" />
-
-        <com.android.example.tapwater.ui.settings.NumberPickerPreference
-            app:iconSpaceReserved="false"
-            app:defaultNumber="1"
-            app:minValue="1"
-            app:maxValue="24"
-            app:stepSize="1"
-            app:formatString="@plurals/hour_format"
-            app:key="reminder_interval"
-            app:useSimpleSummaryProvider="true"
-            app:title="@string/interval_title" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:iconSpaceReserved="false"
         app:title="@string/category_record" >
 
-        <com.android.example.tapwater.ui.settings.NumberPickerPreference
+        <com.android.parkjongseok.tapwater.ui.settings.NumberPickerPreference
             app:iconSpaceReserved="false"
             app:defaultNumber="2"
             app:minValue="0"
@@ -49,7 +17,7 @@
             app:title="@string/daily_goal_title"
             app:useSimpleSummaryProvider="true" />
 
-        <com.android.example.tapwater.ui.settings.SpeedPreference
+        <com.android.parkjongseok.tapwater.ui.settings.SpeedPreference
             app:defaultSpeed="92"
             app:iconSpaceReserved="false"
             app:key="speed"
@@ -64,5 +32,43 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/category_notification" >
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="reminder"
+            app:title="@string/reminder_title" />
+
+        <com.android.parkjongseok.tapwater.ui.settings.NumberPickerPreference
+            app:iconSpaceReserved="false"
+            app:defaultNumber="1"
+            app:minValue="1"
+            app:maxValue="24"
+            app:stepSize="1"
+            app:formatString="@plurals/hour_format"
+            app:key="reminder_interval"
+            app:useSimpleSummaryProvider="true"
+            app:title="@string/interval_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/category_about">
+        <Preference
+            app:fragment="com.android.example.tapwater.ui.settings.AppInfoFragment"
+            app:key="app_info"
+            app:iconSpaceReserved="false"
+            app:title="@string/info_title" />
+
+        <Preference
+            app:fragment="com.android.example.tapwater.ui.settings.OpenSourceLicensesFragment"
+            app:key="open_source_licenses"
+            app:iconSpaceReserved="false"
+            app:title="@string/open_source_title" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
