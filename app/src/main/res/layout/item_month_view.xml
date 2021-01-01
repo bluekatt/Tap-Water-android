@@ -6,11 +6,11 @@
         <import type="android.view.View" />
         <variable
             name="item"
-            type="com.android.parkjongseok.tapwater.ui.summary.MonthSummaryItem" />
+            type="com.parkjongseok.tapwater.ui.summary.MonthSummaryItem" />
 
         <variable
             name="clickListener"
-            type="com.android.parkjongseok.tapwater.ui.summary.MonthSummaryListener" />
+            type="com.parkjongseok.tapwater.ui.summary.MonthSummaryListener" />
 
         <variable
             name="position"
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.android.parkjongseok.tapwater.ui.summary.CirclePercentageView
+        <com.parkjongseok.tapwater.ui.summary.CirclePercentageView
             android:id="@+id/circlePercentageView"
             android:layout_width="0dp"
             android:layout_height="0dp"

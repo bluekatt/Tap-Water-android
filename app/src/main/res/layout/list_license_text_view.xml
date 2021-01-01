@@ -5,11 +5,11 @@
     <data>
         <variable
             name="item"
-            type="com.android.parkjongseok.tapwater.ui.settings.OpenSourceLicensesInfo" />
+            type="com.parkjongseok.tapwater.ui.settings.OpenSourceLicensesInfo" />
 
         <variable
             name="clickListener"
-            type="com.android.parkjongseok.tapwater.ui.settings.LicenseListener" />
+            type="com.parkjongseok.tapwater.ui.settings.LicenseListener" />
     </data>
 
     <TextView

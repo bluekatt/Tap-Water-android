@@ -6,7 +6,7 @@
         app:iconSpaceReserved="false"
         app:title="@string/category_record" >
 
-        <com.android.parkjongseok.tapwater.ui.settings.NumberPickerPreference
+        <com.parkjongseok.tapwater.ui.settings.NumberPickerPreference
             app:iconSpaceReserved="false"
             app:defaultNumber="2"
             app:minValue="0"
@@ -17,7 +17,7 @@
             app:title="@string/daily_goal_title"
             app:useSimpleSummaryProvider="true" />
 
-        <com.android.parkjongseok.tapwater.ui.settings.SpeedPreference
+        <com.parkjongseok.tapwater.ui.settings.SpeedPreference
             app:defaultSpeed="92"
             app:iconSpaceReserved="false"
             app:key="speed"
@@ -41,7 +41,7 @@
             app:key="reminder"
             app:title="@string/reminder_title" />
 
-        <com.android.parkjongseok.tapwater.ui.settings.NumberPickerPreference
+        <com.parkjongseok.tapwater.ui.settings.NumberPickerPreference
             app:iconSpaceReserved="false"
             app:defaultNumber="1"
             app:minValue="1"

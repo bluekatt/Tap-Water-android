@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.android.parkjongseok.tapwater.database.DrinkLogItem" />
+            type="com.parkjongseok.tapwater.database.DrinkLogItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

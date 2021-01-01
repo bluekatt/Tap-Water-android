@@ -8,7 +8,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.android.parkjongseok.tapwater.ui.record.RecordViewModel" />
+            type="com.parkjongseok.tapwater.ui.record.RecordViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,7 +87,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <com.android.parkjongseok.tapwater.ui.record.WaterBackground
+        <com.parkjongseok.tapwater.ui.record.WaterBackground
             android:id="@+id/waterBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"

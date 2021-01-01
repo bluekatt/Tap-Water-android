@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startGoalSetFragment"
-        android:name="com.android.parkjongseok.tapwater.StartGoalSetFragment"
+        android:name="com.parkjongseok.tapwater.StartGoalSetFragment"
         android:label="start_goal_set_fragment"
         tools:layout="@layout/fragment_start_goal_set" >
         <action
@@ -16,6 +16,6 @@
     </fragment>
     <dialog
         android:id="@+id/speedMeasureFragment"
-        android:name="com.android.parkjongseok.tapwater.ui.settings.SpeedMeasureFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.SpeedMeasureFragment"
         android:label="SpeedMeasureFragment" />
 </navigation>

@@ -73,7 +73,7 @@
         <item quantity="one">%d hour</item>
         <item quantity="other">%d hours</item>
     </plurals>
-    <string name="interval_title">Intervals</string>
+    <string name="interval_title">Interval</string>
 
     <!-- Record Preferences -->
     <string name="daily_goal_title">Daily Goal</string>

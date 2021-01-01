@@ -6,12 +6,12 @@
     app:startDestination="@id/navigation_settings">
     <fragment
         android:id="@+id/navigation_app_info"
-        android:name="com.android.parkjongseok.tapwater.ui.settings.AppInfoFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.AppInfoFragment"
         android:label="@string/info_title"
         tools:layout="@layout/fragment_app_info" />
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.android.parkjongseok.tapwater.ui.settings.SettingsFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings">
         <action
@@ -36,11 +36,11 @@
     </fragment>
     <dialog
         android:id="@+id/navigation_speed_measure"
-        android:name="com.android.parkjongseok.tapwater.ui.settings.SpeedMeasureFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.SpeedMeasureFragment"
         android:label="SpeedMeasureFragment" />
     <fragment
         android:id="@+id/navigation_open_source_licenses"
-        android:name="com.android.parkjongseok.tapwater.ui.settings.OpenSourceLicensesFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.OpenSourceLicensesFragment"
         android:label="@string/open_source_title"
         tools:layout="@layout/fragment_open_source_licenses" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_open_source_license_detail"
-        android:name="com.android.parkjongseok.tapwater.ui.settings.OpenSourceLicenseDetailFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.OpenSourceLicenseDetailFragment"
         tools:layout="@layout/fragment_open_source_license_detail" >
         <argument
             android:name="licenseContent"

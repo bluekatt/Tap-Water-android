@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.android.parkjongseok.tapwater.ui.record.RecordDetailViewModel" />
+            type="com.parkjongseok.tapwater.ui.record.RecordDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
