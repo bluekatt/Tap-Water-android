@@ -7,7 +7,7 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.android.example.tapwater.ui.settings.SpeedMeasureViewModel" />
+            type="com.android.parkjongseok.tapwater.ui.settings.SpeedMeasureViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -206,7 +206,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <com.android.example.tapwater.ui.settings.MeasureBackground
+        <com.android.parkjongseok.tapwater.ui.settings.MeasureBackground
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="@{viewModel.measuring ? View.VISIBLE : View.GONE}"

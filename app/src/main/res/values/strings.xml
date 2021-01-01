@@ -1,6 +1,7 @@
 <resources>
     <!-- General -->
     <string name="app_name">Tap Water</string>
+    <string name="app_name_debug">Tap Water-Debug</string>
     <string name="title_summary">Summary</string>
     <string name="title_record">Record</string>
     <string name="title_settings">Settings</string>
@@ -18,8 +19,8 @@
     <string name="time_format_short">%d</string>
 
     <!-- Start Goal Set Fragment -->
-    <string name="goal_set_help_text">Please set the amount you try to drink a day.</string>
-    <string name="goal_set_complete">Goal Set Completed</string>
+    <string name="goal_set_help_text">Please set the amount you want to drink a day.</string>
+    <string name="goal_set_complete">Goal Set</string>
 
     <!-- Record Fragment -->
     <string name="percentage">%s%%</string>
@@ -32,7 +33,7 @@
     <string name="record_detail_drank_today">Drank</string>
     <string name="record_detail_goal">Goal</string>
     <string name="record_detail_average">Average per Hour</string>
-    <string name="record_detail_most_drank_time">Most Drank Time</string>
+    <string name="record_detail_most_drank_time">Peak Time</string>
     <string name="record_detail_drank_at_time">Drank</string>
     <string name="record_detail_now">Now</string>
     <string name="record_detail_time_title">Time</string>
@@ -51,10 +52,11 @@
     <string name="complete_show_calendar">Show Calendar</string>
 
     <!-- Settings Fragment -->
-    <string name="category_general">General</string>
     <string name="category_notification">Notification</string>
     <string name="category_record">Record</string>
+    <string name="category_about">About</string>
     <string name="info_title">App Info</string>
+    <string name="open_source_title">Open Source Licenses</string>
     <string name="notification_title">Notification</string>
     <string name="record_title">Record</string>
     <string name="remove_record_title">Clear Records</string>
@@ -111,6 +113,8 @@
     <string name="up_to_date">App is up to date</string>
     <string name="current_version">Current Version: %s</string>
     <string name="latest_version">Latest Version: %s</string>
+
+    <!-- Open Source Licenses Fragment -->
 
     <!-- Notification -->
     <string name="notification_title_text">Drink Water</string>

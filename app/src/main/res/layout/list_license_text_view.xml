@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.android.parkjongseok.tapwater.ui.settings.OpenSourceLicensesInfo" />
+
+        <variable
+            name="clickListener"
+            type="com.android.parkjongseok.tapwater.ui.settings.LicenseListener" />
+    </data>
+
+    <TextView
+        android:id="@+id/license_title"
+        android:text="@{item.licenseTitle}"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{() -> clickListener.onClick(item)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:textColor="@color/secondaryTextColor"
+        android:textSize="16sp"
+        tools:text="License" />
+
+</layout>
