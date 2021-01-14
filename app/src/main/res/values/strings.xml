@@ -80,8 +80,13 @@
     <string name="speed_title">Drinking Speed</string>
 
     <!-- Speed Measure Fragment -->
+    <string name="speed_measure_title">Speed Measure</string>
     <string name="input_hint">Volume to Drink(ml)</string>
-    <string name="tip_text">Step 1: Enter volume\nStep 2: Touch the empty cup\nStep 3: Drink water to measure drinking speed</string>
+    <string name="next_button">Next</string>
+    <string name="measure_tip_text">Tap Water uses drinking speed of the user and time interval to record your water intake. Please enter the volume of cup you want to drink, and then measure speed by drinking water three cups of water. This should be done only once on install.</string>
+    <string name="cup_tip_text">Drink water as you touch the cup. Tap Water will start measuring time at the same time you touch it. Hit Done as you finish drinking. Tap Water will calculate speed using cup volume and time interval.</string>
+    <string name="volume_tip_text">Enter volume of cup you will drink three times. Measurement will be accurate and easy if you enter the appropriate amount; about one cup of paper cup.</string>
+    <string name="set_volume">Set Volume</string>
     <string name="drink_complete">Done</string>
     <string name="measure_again">Measure Again</string>
     <string name="measure_complete">Measuring Complete</string>
@@ -94,7 +99,7 @@
 
     <!-- Speed Measure Help Fragment -->
     <string name="help_title">Volume</string>
-    <string name="help_detail">Please enter volume to drink for measurement.\nYou need to drink three times for measurement.</string>
+    <string name="manual_input">Manual Input</string>
     <string name="cup_selector_title">Choose by Cup Type</string>
     <string name="soju_glass_title">Shot Glass</string>
     <string name="soju_glass_volume">50ml</string>
@@ -150,5 +155,7 @@
     <string name="month_summary_achieved_days">Goal Met</string>
     <string name="month_summary_most_drank">Highest Record</string>
     <string name="month_summary_most_drank_date">Highest Record Date</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

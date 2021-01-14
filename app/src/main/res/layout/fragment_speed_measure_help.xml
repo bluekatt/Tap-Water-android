@@ -276,13 +276,18 @@
 
         </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/help_detail"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/manual_input_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/help_detail"
+            android:text="@string/manual_input"
+            android:textColor="@color/primaryTextColor"
+            android:onClick="@{() -> viewModel.onManualInputClicked()}"
+            app:icon="@drawable/ic_edit_24"
+            app:iconTint="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/close_button" />
 
@@ -306,7 +311,7 @@
             android:text="@string/cup_selector_title"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/help_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/manual_input_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

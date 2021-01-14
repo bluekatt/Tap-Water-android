@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/speed_measure_navigation"
+    app:startDestination="@id/speedMeasureGuideFragment">
+
+    <fragment
+        android:id="@+id/speedMeasureGuideFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.SpeedMeasureGuideFragment"
+        android:label="SpeedMeasureGuideFragment" >
+        <action
+            android:id="@+id/action_speedMeasureGuideFragment_to_speedMeasureVolumeFragment"
+            app:destination="@id/speedMeasureVolumeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/speedMeasureVolumeFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.SpeedMeasureVolumeFragment"
+        android:label="SpeedMeasureVolumeFragment" >
+        <action
+            android:id="@+id/action_speedMeasureVolumeFragment_to_speedMeasureCupsFragment"
+            app:destination="@id/speedMeasureCupsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/speedMeasureCupsFragment"
+        android:name="com.parkjongseok.tapwater.ui.settings.SpeedMeasureCupsFragment"
+        android:label="SpeedMeasureCupsFragment" >
+        <action
+            android:id="@+id/action_speedMeasureCupsFragment_to_speedMeasureGuideFragment"
+            app:destination="@id/speedMeasureGuideFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"/>
+    </fragment>
+</navigation>

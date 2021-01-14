@@ -284,6 +284,7 @@
             android:layout_marginBottom="32dp"
             android:text="@string/record_remove_last"
             android:textColor="@android:color/holo_red_light"
+            android:enabled="@{viewModel.enableDelete}"
             app:icon="@drawable/ic_delete_24"
             app:iconTint="@android:color/holo_red_light"
             app:layout_constraintBottom_toBottomOf="parent"

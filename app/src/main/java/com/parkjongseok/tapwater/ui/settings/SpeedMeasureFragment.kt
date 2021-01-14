@@ -1,19 +1,13 @@
 package com.parkjongseok.tapwater.ui.settings
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.os.Build
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.PreferenceManager
 import com.parkjongseok.tapwater.MainActivity
 import com.parkjongseok.tapwater.MyApplication
@@ -32,10 +26,9 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
     }
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    val viewModel: SpeedMeasureViewModel by viewModels({ this }) { viewModelFactory }
+    val viewModel: SpeedMeasureViewModel by viewModels({ requireActivity() }) { viewModelFactory }
     private lateinit var pref: SharedPreferences
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,9 +41,8 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.helpInfoButton.setOnClickListener {
-            viewModel.onHelpInfoButtonClicked()
-        }
+        val navHostFragment = childFragmentManager.findFragmentById(R.id.speed_measure_nav_host) as NavHostFragment
+        val navController = navHostFragment.navController
 
         viewModel.measureComplete.observe(viewLifecycleOwner, {
             if(it && viewModel.speed.value!=null) {
@@ -62,6 +54,7 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
                     startActivity(intent)
                     requireActivity().finish()
                 }
+                viewModel.willBeDismissed()
                 dismiss()
             }
         })
@@ -69,46 +62,52 @@ class SpeedMeasureFragment(private val speedPreference: SpeedPreference? = null)
         viewModel.navigateToHelpInfo.observe(viewLifecycleOwner, {
             if(it) {
                 val speedMeasureHelpFragment = SpeedMeasureHelpFragment()
-                speedMeasureHelpFragment.setTargetFragment(this, 0)
                 speedMeasureHelpFragment.show(parentFragmentManager, "speedMeasureHelp")
                 viewModel.onHelpInfoNavigated()
             }
         })
 
-        val touchListener = {v: View, event: MotionEvent ->
-            if(v.isClickable) {
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                            (v as ImageView).colorFilter = BlendModeColorFilter(Color.rgb(209, 209, 209), BlendMode.SRC_IN)
-                        } else {
-                            (v as ImageView).setColorFilter(Color.rgb(209, 209, 209), PorterDuff.Mode.SRC_IN)
-                        }
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        (v as ImageView).clearColorFilter()
-                        v.performClick()
-                    }
-                    MotionEvent.ACTION_CANCEL -> (v as ImageView).clearColorFilter()
-                }
+        viewModel.navigateToVolume.observe(viewLifecycleOwner, {
+            if(it) {
+                navController.navigate(SpeedMeasureGuideFragmentDirections.actionSpeedMeasureGuideFragmentToSpeedMeasureVolumeFragment())
+                viewModel.onGuideNextNavigated()
             }
-            true
-        }
+        })
 
-        binding.cupButton1.setOnTouchListener(touchListener)
-        binding.cupButton2.setOnTouchListener(touchListener)
-        binding.cupButton3.setOnTouchListener(touchListener)
+        viewModel.navigateToCups.observe(viewLifecycleOwner, {
+            if(it){
+                navController.navigate(SpeedMeasureVolumeFragmentDirections.actionSpeedMeasureVolumeFragmentToSpeedMeasureCupsFragment())
+                viewModel.onSetVolumeNavigated()
+            }
+        })
+
+        viewModel.navigateToGuide.observe(viewLifecycleOwner, {
+            if(it){
+                navController.navigate(SpeedMeasureCupsFragmentDirections.actionSpeedMeasureCupsFragmentToSpeedMeasureGuideFragment())
+                viewModel.onResetNavigated()
+            }
+        })
+
+        binding.closeButton.setOnClickListener {
+            dismiss()
+        }
 
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
+
         view?.layoutParams?.height = (requireActivity().resources.displayMetrics.heightPixels)
         dialog?.window?.setDimAmount(0f)
         (dialog as BottomSheetDialog).apply {
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
             behavior.skipCollapsed = true
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.initializeData()
     }
 }

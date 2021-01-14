@@ -4,9 +4,7 @@ import android.content.Context
 import com.parkjongseok.tapwater.StartGoalSetFragment
 import com.parkjongseok.tapwater.ui.record.RecordDetailFragment
 import com.parkjongseok.tapwater.ui.record.RecordFragment
-import com.parkjongseok.tapwater.ui.settings.SettingsFragment
-import com.parkjongseok.tapwater.ui.settings.SpeedMeasureFragment
-import com.parkjongseok.tapwater.ui.settings.SpeedMeasureHelpFragment
+import com.parkjongseok.tapwater.ui.settings.*
 import com.parkjongseok.tapwater.ui.summary.StatsFragment
 import com.parkjongseok.tapwater.ui.summary.SummaryFragment
 import dagger.BindsInstance
@@ -29,6 +27,9 @@ interface AppComponent {
     fun inject(fragment: SettingsFragment)
     fun inject(fragment: SpeedMeasureFragment)
     fun inject(fragment: SpeedMeasureHelpFragment)
+    fun inject(fragment: SpeedMeasureGuideFragment)
+    fun inject(fragment: SpeedMeasureVolumeFragment)
+    fun inject(fragment: SpeedMeasureCupsFragment)
     fun inject(fragment: SummaryFragment)
     fun inject(fragment: StatsFragment)
 }

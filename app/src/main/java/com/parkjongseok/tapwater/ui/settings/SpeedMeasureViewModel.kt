@@ -30,9 +30,25 @@ class SpeedMeasureViewModel @Inject constructor(
     val measuring: LiveData<Boolean>
         get() = _measuring
 
+    private val _manualInput = MutableLiveData<Boolean>()
+    val manualInput: LiveData<Boolean>
+        get() = _manualInput
+
     private val _navigateToHelpInfo = MutableLiveData<Boolean>()
     val navigateToHelpInfo: LiveData<Boolean>
         get() = _navigateToHelpInfo
+
+    private val _navigateToVolume = MutableLiveData<Boolean>()
+    val navigateToVolume: LiveData<Boolean>
+        get() = _navigateToVolume
+
+    private val _navigateToCups = MutableLiveData<Boolean>()
+    val navigateToCups: LiveData<Boolean>
+        get() = _navigateToCups
+
+    private val _navigateToGuide = MutableLiveData<Boolean>()
+    val navigateToGuide: LiveData<Boolean>
+        get() = _navigateToGuide
 
     val buttonEnabled = Transformations.map(measuredCups) {
         List(3) { index ->
@@ -50,10 +66,24 @@ class SpeedMeasureViewModel @Inject constructor(
 
     private var startTime = 0L
 
-    init {
+    fun initializeData() {
+        volume.set("")
         _speed.value = 0f
         _measuredCups.value = 0
         _measuring.value = false
+        _manualInput.value = false
+    }
+
+    init {
+        initializeData()
+    }
+
+    fun onManualInputClicked() {
+        _manualInput.value = true
+    }
+
+    fun onManualInputEnabled() {
+        _manualInput.value = false
     }
 
     fun onCupClicked() {
@@ -70,15 +100,37 @@ class SpeedMeasureViewModel @Inject constructor(
         _measuring.value = false
     }
 
+    fun willBeDismissed() {
+        _measureCompleted.value = false
+    }
+
     fun onCupTypeClicked(vol: String) {
         volume.set(vol)
     }
 
     fun onResetClicked() {
-        volume.set("")
-        _speed.value = 0f
-        _measuredCups.value = 0
-        _measuring.value = false
+        initializeData()
+        _navigateToGuide.value = true
+    }
+
+    fun onResetNavigated() {
+        _navigateToGuide.value = false
+    }
+
+    fun onGuideNextButtonClicked() {
+        _navigateToVolume.value = true
+    }
+
+    fun onGuideNextNavigated() {
+        _navigateToVolume.value = false
+    }
+
+    fun onSetVolumeClicked() {
+        _navigateToCups.value = true
+    }
+
+    fun onSetVolumeNavigated() {
+        _navigateToCups.value = false
     }
 
     fun onHelpInfoButtonClicked() {

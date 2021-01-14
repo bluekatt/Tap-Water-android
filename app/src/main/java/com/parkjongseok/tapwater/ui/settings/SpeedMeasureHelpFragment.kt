@@ -17,7 +17,7 @@ import javax.inject.Inject
 class SpeedMeasureHelpFragment : BottomSheetDialogFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-    val viewModel: SpeedMeasureViewModel by viewModels({ targetFragment!! }) { viewModelFactory }
+    val viewModel: SpeedMeasureViewModel by viewModels({ requireActivity() }) { viewModelFactory }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -63,6 +63,13 @@ class SpeedMeasureHelpFragment : BottomSheetDialogFragment() {
             viewModel.onCupTypeClicked(vol.substring(0, vol.length-2))
             dismiss()
         }
+
+        viewModel.manualInput.observe(viewLifecycleOwner, {
+            if(it) {
+                dismiss()
+                viewModel.onManualInputEnabled()
+            }
+        })
 
         return binding.root
     }

@@ -47,7 +47,7 @@ class RecordDetailViewModel @Inject constructor(
     }
 
     val average = Transformations.map(record) {
-        context.getString(R.string.liter_format, it.drankToday / lastTime.toFloat())
+        context.getString(R.string.liter_format, it.drankToday / (lastTime+1).toFloat())
     }
 
     val selectedTimeFormatted = Transformations.map(selectedTime) {
@@ -55,6 +55,10 @@ class RecordDetailViewModel @Inject constructor(
             getFormattedTime("${it.toInt()}:00", R.string.time_format, context.resources)
         else
             context.getString(R.string.record_detail_now)
+    }
+
+    val enableDelete = Transformations.map(record) {
+        it.drinkLog.isNotEmpty()
     }
 
     val mostDrankTime = Transformations.map(record) {
