@@ -15,6 +15,7 @@ class RecordDetailViewModel @Inject constructor(
     private val context: Context
 ): ViewModel() {
     var lastTime = 0
+    var isToday = false
 
     private var detailDate = ""
     private val _showChart = MutableLiveData<Boolean>()
@@ -46,11 +47,11 @@ class RecordDetailViewModel @Inject constructor(
     }
 
     val average = Transformations.map(record) {
-        context.getString(R.string.liter_format, it.drankToday / 24f)
+        context.getString(R.string.liter_format, it.drankToday / lastTime.toFloat())
     }
 
     val selectedTimeFormatted = Transformations.map(selectedTime) {
-        if(it.toInt()!=lastTime+1)
+        if(it.toInt()!=lastTime+1 || !isToday)
             getFormattedTime("${it.toInt()}:00", R.string.time_format, context.resources)
         else
             context.getString(R.string.record_detail_now)

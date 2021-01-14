@@ -43,10 +43,13 @@ fun getFormattedTime(timeString: String?, formatType: Int, res: Resources): Stri
     }
     val components = timeString.split(":").map{ it.toInt() }.toMutableList()
     var aMarker = if(aFirst) "오전" else "AM"
-    if(components[0]>12) {
+    if(components[0]>=12) {
         if(components[0]!=24)
             aMarker = if(aFirst) "오후" else "PM"
         components[0] -= 12
+    }
+    if(components[0]==0) {
+        components[0] = 12
     }
     return if(aFirst) {
         res.getString(formatType, aMarker, components[0])
@@ -103,7 +106,7 @@ suspend fun getPlayStoreVersion(): String{
     var storeVersion = ""
     withContext(Dispatchers.IO){
         try {
-            storeVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=com.android.example.tapwater&hl=en")
+            storeVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=com.parkjongseok.tapwater&hl=en")
                 .timeout(30000)
                 .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
                 .referrer("http://www.google.com")

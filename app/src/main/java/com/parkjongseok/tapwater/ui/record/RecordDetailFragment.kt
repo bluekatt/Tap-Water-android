@@ -59,6 +59,7 @@ class RecordDetailFragment : BottomSheetDialogFragment(), OnChartValueSelectedLi
         val today = dateDF.format(Date())
         if(today != recordDate) lastTime = 23
         viewModel.lastTime = lastTime
+        viewModel.isToday = today == recordDate
         viewModel.setRecord(recordDate)
 
         val binding: FragmentRecordDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_record_detail, container, false)
@@ -76,7 +77,7 @@ class RecordDetailFragment : BottomSheetDialogFragment(), OnChartValueSelectedLi
         chart.extraBottomOffset = 10f
         chart.setOnChartValueSelectedListener(this)
 
-        val xAxisFormatter = DetailChartXAxisFormatter(lastTime+2, requireContext().resources)
+        val xAxisFormatter = DetailChartXAxisFormatter(lastTime+2, today == recordDate, requireContext().resources)
         chart.xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
             granularity = 1f
@@ -269,9 +270,9 @@ class RecordDetailFragment : BottomSheetDialogFragment(), OnChartValueSelectedLi
 
 }
 
-class DetailChartXAxisFormatter(val size: Int, val res: Resources): ValueFormatter() {
+class DetailChartXAxisFormatter(val size: Int, val isToday: Boolean, val res: Resources): ValueFormatter() {
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-        return if(value.toInt()==size-1 && value!=25f) res.getString(R.string.record_detail_now) else res.getString(R.string.time_format_short, value.toInt())
+        return if(value.toInt()==size-1 && value!=25f && !isToday) res.getString(R.string.record_detail_now) else res.getString(R.string.time_format_short, value.toInt())
     }
 }
 
